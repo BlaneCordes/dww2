@@ -1,4 +1,6 @@
 Dww2::Application.routes.draw do
+  resources :email_lists
+
   resources :pages
 
   root :to => 'pages#home'
