@@ -1,9 +1,9 @@
 Dww2::Application.routes.draw do
-  resources :email_lists
+  resources :emails
 
   resources :pages
 
-  root :to => 'pages#home'
+  root :to => 'emails#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
