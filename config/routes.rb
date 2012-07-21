@@ -1,4 +1,8 @@
 Dww2::Application.routes.draw do
+  resources :players
+
+  resources :teams
+
   resources :emails
 
   resources :pages
