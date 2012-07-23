@@ -1,4 +1,6 @@
 Dww2::Application.routes.draw do
+  resources :free_agents
+
   resources :players
 
   resources :teams

@@ -1,0 +1,25 @@
+<%= form_for(@free_agent) do |f| %>
+  <% if @free_agent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@free_agent.errors.count, "error") %> prohibited this free_agent from being saved:</h2>
+
+      <ul>
+      <% @free_agent.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

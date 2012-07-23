@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
 }
 
 #looping through teams
-def self.scrape_yahoo
+def self.scrape_yahoo_league
 	@teams.each do |team, team_url|
   	@team = Team.new
   	@team.name = team

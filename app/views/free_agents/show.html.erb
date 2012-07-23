@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @free_agent.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @free_agent.last_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_free_agent_path(@free_agent) %> |
+<%= link_to 'Back', free_agents_path %>

@@ -10,6 +10,7 @@ gem 'nokogiri'
 gem 'pry'
 gem 'ap'
 gem 'crack'
+gem 'pg'
 
 group :test, :development do
  gem 'sqlite3'

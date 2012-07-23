@@ -1,0 +1,25 @@
+<h1>Listing free_agents</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @free_agents.each do |free_agent| %>
+  <tr>
+    <td><%= free_agent.first_name %></td>
+    <td><%= free_agent.last_name %></td>
+    <td><%= link_to 'Show', free_agent %></td>
+    <td><%= link_to 'Edit', edit_free_agent_path(free_agent) %></td>
+    <td><%= link_to 'Destroy', free_agent, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Free agent', new_free_agent_path %>
