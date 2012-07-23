@@ -10,6 +10,22 @@
   <%= @team.team_url %>
 </p>
 
+<h1>Players</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+  </tr>
+
+<% @team.players.each do |player| %>
+  <tr>
+    <td><%= player.first_name %></td>
+    <td><%= player.last_name %></td>
+  </tr>
+<% end %>
+</table>
+
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
