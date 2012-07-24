@@ -9,18 +9,20 @@
     <th></th>
   </tr>
 
-raise.inspect
-<% FreeAgent.taken_players.each do |free_agent| %>
-  <tr>
+<% FreeAgent.taken_players.each do |player| %> 
 
-    <td><%= free_agent.last_name(free_agent) %></td>
-    <td><%= link_to 'Show', free_agent %></td>
-    <td><%= link_to 'Edit', edit_free_agent_path(free_agent) %></td>
-    <td><%= link_to 'Destroy', free_agent, confirm: 'Are you sure?', method: :delete %></td>
+  <tr>
+    <td><%= player.first_name %></td>
+    <td><%= player.last_name %></td>
+    <td><%= link_to 'Show', player %></td>
+    <td><%= link_to 'Edit', edit_player_path(player) %></td>
+    <td><%= link_to 'Destroy', player, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
+
+
 
 <%= link_to 'New Free agent', new_free_agent_path %>
