@@ -1,4 +1,6 @@
 Dww2::Application.routes.draw do
+  resources :users
+
   resources :free_agents
 
   resources :players
@@ -9,7 +11,7 @@ Dww2::Application.routes.draw do
 
   resources :pages
 
-  root :to => 'free_agents#index'
+  root :to => 'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
