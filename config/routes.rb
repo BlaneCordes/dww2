@@ -9,7 +9,7 @@ Dww2::Application.routes.draw do
 
   resources :pages
 
-  root :to => 'emails#new'
+  root :to => 'free_agents#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
