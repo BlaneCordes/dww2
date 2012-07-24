@@ -9,10 +9,11 @@
     <th></th>
   </tr>
 
-<% @free_agents.each do |free_agent| %>
+raise.inspect
+<% FreeAgent.taken_players.each do |free_agent| %>
   <tr>
-    <td><%= free_agent.first_name %></td>
-    <td><%= free_agent.last_name %></td>
+
+    <td><%= free_agent.last_name(free_agent) %></td>
     <td><%= link_to 'Show', free_agent %></td>
     <td><%= link_to 'Edit', edit_free_agent_path(free_agent) %></td>
     <td><%= link_to 'Destroy', free_agent, confirm: 'Are you sure?', method: :delete %></td>

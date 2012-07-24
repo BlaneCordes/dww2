@@ -8,15 +8,11 @@ class FreeAgent < ActiveRecord::Base
 	def self.taken_players
 		free_agents = FreeAgent.all
 		players = Player.all
-		free_agents.collect do |player|
-			Player.find_by_last_name("#{player.last_name}")
+		free_agents.keep_if do |player|
+			!Player.find_by_last_name("#{player.last_name}")
 	 end
 	end
 
-
-	def remove_taken_players
-		#TODO adjust FreeAgent table to not have the taken_players
-	end
 
 
 	def self.scrape_free_agents
