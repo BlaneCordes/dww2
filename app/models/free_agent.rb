@@ -16,18 +16,19 @@ class FreeAgent < ActiveRecord::Base
 
 
 	def self.scrape_free_agents
-	  transaction_trends_page = Nokogiri::HTML(open("http://baseball.fantasysports.yahoo.com/b1/buzzindex?date=2012-07-22&pos=ALL&src=combined&sort=BI_A&sdir=1"))
+	  transaction_trends_page = Nokogiri::HTML(open("http://baseball.fantasysports.yahoo.com/b1/buzzindex?date=#{Time.now.to_date}&pos=ALL&src=combined&sort=BI_A&sdir=1"))
 	    	hot_players = transaction_trends_page.css(".name").text
 	    	hot_players.gsub!(/([A-Z][^A-Z]+)/, '\1 ')
 	    	hot_players.gsub!(/([A-Z])/, '\1\2')
 	    	hot_players.gsub!(/(Shin-|O') /, '\1')
+	    	hot_players.gsub!(/(Wei-|O') /, '\1')
 	    	array_players = hot_players.split(' ')
 	    	array_players.each_with_index do |name,index|
 	    		if name == "CC"
 	        next
 	      elsif name == "Ty"
 	        next
-	        elsif name.length <= 2
+	       elsif name.length <= 2
 	    			array_players[index] = "#{name} " + "#{array_players[index+1]}"
 	    			array_players.delete_at(index+1)
 	    		end
@@ -40,7 +41,6 @@ class FreeAgent < ActiveRecord::Base
 				    			@free_agent.last_name = array_players[index+1]
 				    		elsif player == "De"
 				    				 array_players[i] = "De Aza"
-				    		else
 				    			next
 				    		end
 
