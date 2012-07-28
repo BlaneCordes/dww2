@@ -11,9 +11,9 @@
 # ActionMailer::Base.default_url_options[:host] = "localhost:3000"
 
 ActionMailer::Base.smtp_settings = {
-  :address  => "smtp.someserver.net",
+  :address  => "smtp.gmail.com",
   :port  => 25,
-  :user_name  => "someone@someserver.net",
-  :password  => "mypass",
+  :user_name  => "dailywaiverwire@gmail.com",
+  :password  => "Stag1985",
   :authentication  => :login
 }
