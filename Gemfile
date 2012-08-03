@@ -11,6 +11,7 @@ gem 'pry'
 gem 'ap'
 gem 'crack'
 gem 'pg'
+gem 'thin'
 
 group :test, :development do
  gem 'sqlite3'
