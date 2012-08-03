@@ -15,8 +15,9 @@ class FreeAgent < ActiveRecord::Base
 
 
 #scraping the yahoo transaction trends page to find the current players mostly being added
+#{Time.now.to_date}
 	def self.scrape_free_agents
-	  transaction_trends_page = Nokogiri::HTML(open("http://baseball.fantasysports.yahoo.com/b1/buzzindex?date=#{Time.now.to_date}&pos=ALL&src=combined&sort=BI_A&sdir=1"))
+	  transaction_trends_page = Nokogiri::HTML(open("http://baseball.fantasysports.yahoo.com/b1/buzzindex?date=2012-08-02&pos=ALL&src=combined&sort=BI_A&sdir=1"))
 	    	hot_players = transaction_trends_page.css(".name").text
 	    	hot_players.gsub!(/([A-Z][^A-Z]+)/, '\1 ')
 	    	hot_players.gsub!(/([A-Z])/, '\1\2')
