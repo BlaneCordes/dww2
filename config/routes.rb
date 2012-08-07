@@ -11,7 +11,7 @@ Dww2::Application.routes.draw do
 
   resources :pages
 
-  match 'Gqlv3658fXXfvu8R_T42ug--.html' => 'users#new'
+  match 'rxo0liFkXArWNZNo1BIz_A--.html' => 'users#new'
 
   root :to => 'users#new'
 
