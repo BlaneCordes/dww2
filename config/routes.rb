@@ -11,6 +11,8 @@ Dww2::Application.routes.draw do
 
   resources :pages
 
+  match 'Gqlv3658fXXfvu8R_T42ug--.html' => 'users#new'
+
   root :to => 'users#new'
 
   # The priority is based upon order of creation:
