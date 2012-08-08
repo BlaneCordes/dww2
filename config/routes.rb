@@ -1,18 +1,13 @@
 Dww2::Application.routes.draw do
+  
   resources :users
-
   resources :free_agents
-
   resources :players
-
   resources :teams
-
   resources :emails
-
   resources :pages
 
-  root :to => 'rxo0li_fk_x_ar_wnz_no1_b_iz_a__s#index'
-
+  root :to => 'users#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
