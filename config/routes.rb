@@ -7,6 +7,8 @@ Dww2::Application.routes.draw do
   resources :emails
   resources :pages
 
+  match 'http://www.dailywaiverwire.com/rxo0liFkXArWNZNo1BIz_A--.html' => 'users#index'
+  match 'rxo0liFkXArWNZNo1BIz_A--.html' => 'users#index'
   root :to => 'users#index'
 
   # The priority is based upon order of creation:
