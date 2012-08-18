@@ -1,6 +1,6 @@
-class CreateYahooTokens < ActiveRecord::Migration
+class CreateAuthentications < ActiveRecord::Migration
   def change
-    create_table :yahoo_tokens do |t|
+    create_table :authentications do |t|
       t.references :user
       t.string :provider
       t.string :uid
@@ -9,3 +9,4 @@ class CreateYahooTokens < ActiveRecord::Migration
     end
   end
 end
+
