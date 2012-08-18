@@ -1,0 +1,14 @@
+
+    Hey <%= @user.first_name %>
+
+     The hottest players right now are:
+
+    <% FreeAgent.taken_players.each do |player| %> 
+
+        <%= player.first_name %>
+        <%= player.last_name %>
+    <% end %>
+   
+
+Thank you,
+The Daily Waiver Wire Team

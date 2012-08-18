@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <h2>
+    Hey <%= @user.first_name %>
+  </h2>
+  <body>
+    <p>
+      The hottest players right now are:
+    </p>
+      <table>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+      </tr>
+
+    <% FreeAgent.taken_players.each do |player| %> 
+
+      <tr>
+        <td><%= player.first_name %></td>
+        <td><%= player.last_name %></td>
+      </tr>
+    <% end %>
+    </table>
+    <p>
+    Thank you,
+    The Daily Waiver Wire Team
+    </p>
+  </body>
+</html>
