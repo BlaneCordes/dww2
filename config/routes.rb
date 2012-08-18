@@ -1,16 +1,20 @@
 Dww2::Application.routes.draw do
-  
+
+
+  root :to => redirect("/users/sign_in")
+  devise_for :users
   resources :users
   resources :free_agents
   resources :players
   resources :teams
   resources :emails
   resources :pages
+  resources :authentications
 
-  match "/auth/:provider/callback" => "sessions#create"
-  match "/signout" => "sessions#destroy", :as => :signout
+  match "/auth/:provider/callback" => "authentications#create"
+  match "/signout" => "authentications#destroy", :as => :signout
 
-  root :to => 'users#new'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

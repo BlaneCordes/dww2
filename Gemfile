@@ -9,12 +9,14 @@ gem 'rails', '3.2.3'
 gem 'nokogiri'
 gem 'pry'
 gem 'ap'
+gem 'awesome_print'
 gem 'crack'
 gem 'pg'
 gem 'thin'
 gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'devise'
+
 
 group :test, :development do
  gem 'sqlite3'

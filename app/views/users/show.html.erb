@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h3> Account Info </h3>
+
 <p>
   <b>First name:</b>
   <%= @user.first_name %>
@@ -14,6 +16,32 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
+
+<h3> Your Authentications </h3>
+
+<table>
+  <tr>
+    <th>Provider</th>
+    <th>User ID</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% if @user.authentications.any? %>
+  <% @user.authentications.each do |auth| %>
+    <tr>
+      <td><%= auth.provider %></td>
+      <td><%= auth.uid %></td>
+      <td><%= link_to 'Destroy', auth, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+<% else %>
+  <%= link_to "Add Yahoo Authentication Now","/auth/yahoo"  %>
+<% end %>
+</table>
+
+<br/>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

@@ -7,6 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if current_user %>
+    <%= link_to "Sign Out", destroy_user_session_path %><br/>
+  <% else %>
+    <%= link_to "Sign In", new_user_session_path  %> <br/>
+  <% end %>
+  <br/>
+  <% if admin? %>
+    Current User:<%= current_user.inspect %><br/>
+    <br/>
+    Authentications: <%= current_user.authentications if current_user %>
+  <% end %>
 
 <%= yield %>
 
