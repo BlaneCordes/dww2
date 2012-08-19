@@ -13,9 +13,7 @@ gem 'awesome_print'
 gem 'crack'
 gem 'pg'
 gem 'thin'
-gem 'omniauth'
-gem 'omniauth-yahoo'
-gem 'devise'
+
 
 
 group :test, :development do
