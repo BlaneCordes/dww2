@@ -13,6 +13,10 @@ gem 'awesome_print'
 gem 'crack'
 gem 'pg'
 gem 'thin'
+gem 'httparty'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-yahoo'
 
 
 
