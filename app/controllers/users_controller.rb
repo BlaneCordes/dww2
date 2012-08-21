@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # @response = current_user.get_nfl if current_user.authentications.any?
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,9 +1,26 @@
 require 'open-uri'
 
 class Team < ActiveRecord::Base
+  include ApiModule
+
   attr_accessible :name, :team_url
 
+  belongs_to :user
   has_many :players
+
+  def get_teams(session)
+    request_url = "http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=mlb/teams?format=json"
+    http_method = "get"
+    build_request(http_method, request_url, session)
+  end
+
+  # 1. I am going to want to get each user's mlb fantasy team.
+  # 2. I then need to pull all the players which is most likely a different API
+  # call. I need to figure out how I want to do that and if I want to do that all in
+  # the same call.
+  # This is beginning to look like a great use of a server side JS framework
+  #
+
 
   @teams = {
   :trippingolney => 'http://baseball.fantasysports.yahoo.com/b1/16633/1',
@@ -44,7 +61,7 @@ def self.scrape_yahoo_league
     		end
     	end
 
-    	array_players.each_with_index do |player,index| 
+    	array_players.each_with_index do |player,index|
     		@player = Player.new
     		if index.even?
     			@player.first_name = player
@@ -58,7 +75,7 @@ def self.scrape_yahoo_league
     	end
 
     	@team.save
-	end   
+	end
 end
 
 end

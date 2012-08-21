@@ -13,7 +13,7 @@ Dww2::Application.routes.draw do
 
   match "/auth/:provider/callback" => "authentications#create"
   match "/signout" => "authentications#destroy", :as => :signout
-
+  match "/leagues" => "authentications#get_nfl_leagues"
 
 
   # The priority is based upon order of creation:
