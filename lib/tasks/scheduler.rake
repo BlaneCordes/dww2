@@ -15,7 +15,7 @@ end
 
 task :send_free_agent_email => :environment do
     puts "Sending free agent email.."
-  	FreeAgentMailer.free_agent_email(blane).deliver
+  	FreeAgentMailer.free_agent_email(User.blane).deliver
   	FreeAgentMailer.free_agent_email(User.first).deliver
   	puts "done."
 end

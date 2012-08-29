@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
-  def blane
+  def self.blane
   	User.find_by_email("blane.cordes@gmail.com")
   end
 
