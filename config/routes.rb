@@ -15,6 +15,8 @@ Dww2::Application.routes.draw do
   match "/signout" => "authentications#destroy", :as => :signout
   match "/nfl_leagues" => "authentications#get_nfl_leagues"
   match "/mlb_leagues" => "authentications#get_mlb_leagues"
+  match "/nfl_players" => "authentications#get_nfl_players"
+  match "/poop" => "authentications#get_nfl_league_key"               
 
 
   # The priority is based upon order of creation:

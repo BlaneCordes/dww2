@@ -32,6 +32,11 @@ class AuthenticationsController < ApplicationController
     redirect_to users_path(current_user)
   end
 
+  def team_key(game_key, league_id)
+    #TODO need to generate team_key dynamically in order to dynamically insert into the get_players query string
+    # {game_key}.l.{league_id}.t.{team_id}
+  end
+
   def get_nfl_leagues
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
     set_access_token(request_url)
@@ -39,6 +44,16 @@ class AuthenticationsController < ApplicationController
 
   def get_mlb_leagues
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=mlb/teams;output=json'
+    set_access_token(request_url)
+  end
+
+  def get_nfl_players
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/nfl.l.182102.t.5/roster/players;output=json'
+    set_access_token(request_url)
+  end
+
+  def get_mlb_players
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/mlb.l.182102.t.5/roster/players;output=json'
     set_access_token(request_url)
   end
 
