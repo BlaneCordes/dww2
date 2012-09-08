@@ -33,6 +33,11 @@ class AuthenticationsController < ApplicationController
   end
 
   def get_nfl_leagues
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
+    set_access_token(request_url)
+  end
+
+  def get_mlb_leagues
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=mlb/teams;output=json'
     set_access_token(request_url)
   end

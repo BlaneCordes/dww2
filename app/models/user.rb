@@ -17,9 +17,7 @@ class User < ActiveRecord::Base
     access_token = prepare_access_token(auth[:token], auth[:secret])
     yahoo_guid = access_token.params[:xoauth_yahoo_guid]
 
-      response = access_token.request(:get, 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games/leagues' )
-
-
+    response = access_token.request(:get, 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games/leagues' )
   end
 
   def prepare_access_token(oauth_token, oauth_token_secret)
