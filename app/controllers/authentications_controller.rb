@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+require 'json'
+
   def index
     @authentications = current_user.authentications
     get_nfl_leagues
@@ -32,42 +34,48 @@ class AuthenticationsController < ApplicationController
     redirect_to users_path(current_user)
   end
 
-  def team_key(game_key, league_id)
-    #TODO need to generate team_key dynamically in order to dynamically insert into the get_players query string
-    # {game_key}.l.{league_id}.t.{team_id}
+  def team_key(request_url)
+    request_url = request_url
+    render :json => data["fantasy_content"]["team"]["team_key"]
   end
 
+  
   def get_nfl_leagues
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
     set_access_token(request_url)
   end
+
+  def get_nfl_players
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/nfl.l.182102.t.5/roster/players;format=json'
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    players_hash = data["fantasy_content"]["team"]["roster"]["players"]
+  end
+  
 
   def get_mlb_leagues
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=mlb/teams;output=json'
     set_access_token(request_url)
   end
 
-  def get_nfl_players
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/nfl.l.182102.t.5/roster/players;output=json'
+  def get_my_mlb_players
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/mlb.l.182102.t.5/roster/players;output=json'
     set_access_token(request_url)
   end
 
-  def get_mlb_players
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/mlb.l.182102.t.5/roster/players;output=json'
+  @@key = 16633
+
+  def get_top_mlb_free_agents
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633;sort=AR;status=A;count=10'
     set_access_token(request_url)
   end
 
   def set_access_token(request_url)
     access_token = session[:access_token]
-    response = access_token.request(:get,request_url)
-    render :json => response.body
-    #This json is causing an error because it is being output in XML
-    #I need to figure out how to pass in a param so that it returns me json
-    #or I convert xml to json
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    render :json => data
   end
 end
-
-
-
-
 

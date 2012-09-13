@@ -16,7 +16,9 @@ Dww2::Application.routes.draw do
   match "/nfl_leagues" => "authentications#get_nfl_leagues"
   match "/mlb_leagues" => "authentications#get_mlb_leagues"
   match "/nfl_players" => "authentications#get_nfl_players"
-  match "/poop" => "authentications#get_nfl_league_key"               
+  match "/poop" => "authentications#get_nfl_league_key"   
+  match "/mlb_league_players" => "authentications#get_top_mlb_free_agents"               
+            
 
 
   # The priority is based upon order of creation:
