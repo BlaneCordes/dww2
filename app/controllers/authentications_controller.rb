@@ -64,10 +64,18 @@ require 'json'
     set_access_token(request_url)
   end
 
-  @@key = 16633
-
   def get_top_mlb_free_agents
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633;sort=AR;status=A;count=10'
+    set_access_token(request_url)
+  end
+
+  def get_mlb_player(player_name=nil)
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=frazier/ownership'
+    set_access_token(request_url)
+  end
+
+  def get_player_ownership(player_name)
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=________/percent_owned'
     set_access_token(request_url)
   end
 
