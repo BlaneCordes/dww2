@@ -18,8 +18,10 @@ Dww2::Application.routes.draw do
   match "/nfl_players" => "authentications#get_nfl_players"
   match "/poop" => "authentications#get_nfl_league_key"   
   match "/mlb_league_players" => "authentications#get_top_mlb_free_agents"    
-  match "/mlb_player" => "authentications#get_mlb_player"               
-           
+  match "/mlb_player" => "authentications#get_mlb_player" 
+  match "/team_key" => "authentications#get_team_key"              
+  match "/leagues" => "users#leagues"   
+  match "/current_user_info" => "authentications#current_user_info"      
             
 
 

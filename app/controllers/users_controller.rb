@@ -10,6 +10,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def leagues
+    @user = current_user
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/leagues'
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    render :json => data["fantasy_content"]
+  end
+
+
   def show
     @user = User.find(params[:id])
     # @response = current_user.get_nfl if current_user.authentications.any?

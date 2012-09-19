@@ -3,7 +3,7 @@ require 'open-uri'
 class Team < ActiveRecord::Base
   include ApiModule
 
-  attr_accessible :name, :team_url
+  attr_accessible :name, :team_url, :team_key
 
   belongs_to :user
   has_many :players

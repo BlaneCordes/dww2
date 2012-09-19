@@ -34,15 +34,33 @@ require 'json'
     redirect_to users_path(current_user)
   end
 
-  def team_key(request_url)
-    request_url = request_url
-    render :json => data["fantasy_content"]["team"]["team_key"]
+  def current_user_info
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    render :json => data
+  end
+
+  def get_team_key
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=nfl/teams;output=json'
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    teams = data["fantasy_content"]["users"]["user"]["games"]["game"]["teams"]
+
+    teams["team"].map do |team|
+      team_key = team["team_key"]
+    end
   end
 
   
   def get_nfl_leagues
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=nfl/teams;output=json'
     set_access_token(request_url)
+
+    #TODO 
+    #Iterate through the hash and create leagues and teams for the user
   end
 
   def get_nfl_players
@@ -55,7 +73,7 @@ require 'json'
   
 
   def get_mlb_leagues
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=mlb/teams;output=json'
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=mlb/teams;output=json'
     set_access_token(request_url)
   end
 
