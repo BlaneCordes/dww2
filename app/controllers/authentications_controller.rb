@@ -50,7 +50,8 @@ require 'json'
     teams = data["fantasy_content"]["users"]["user"]["games"]["game"]["teams"]
 
     teams["team"].map do |team|
-      team_key = team["team_key"]
+      @team_key = team["team_key"]
+      
     end
   end
 
@@ -58,17 +59,11 @@ require 'json'
   def get_nfl_leagues
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=nfl/teams;output=json'
     set_access_token(request_url)
-
-    #TODO 
-    #Iterate through the hash and create leagues and teams for the user
   end
 
   def get_nfl_players
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/nfl.l.182102.t.5/roster/players;format=json'
-    access_token = session[:access_token]
-    response = access_token.request(:get, request_url)
-    data = Hash.from_xml(response.body)
-    players_hash = data["fantasy_content"]["team"]["roster"]["players"]
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/nfl.l.263673.t.9/roster/players;format=json'
+    set_access_token(request_url)
   end
   
 
@@ -82,20 +77,11 @@ require 'json'
     set_access_token(request_url)
   end
 
-  def get_top_mlb_free_agents
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633;sort=AR;status=A;count=10'
+  def get_nfl_league_transactions
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/nfl.l.263673/transactions'
     set_access_token(request_url)
   end
 
-  def get_mlb_player(player_name=nil)
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=frazier/ownership'
-    set_access_token(request_url)
-  end
-
-  def get_player_ownership(player_name)
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=________/percent_owned'
-    set_access_token(request_url)
-  end
 
   def set_access_token(request_url)
     access_token = session[:access_token]

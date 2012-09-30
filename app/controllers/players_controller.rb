@@ -53,6 +53,21 @@ class PlayersController < ApplicationController
     end
   end
 
+  def get_mlb_player(player_name=nil)
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=rodriguez/ownership'
+    set_access_token(request_url)
+  end
+
+  def get_nfl_player(player_name=nil)
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/nfl.l.263673/players;search=hillis/ownership'
+    set_access_token(request_url)
+  end
+
+  def get_player_ownership(player_name)
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=________/percent_owned'
+    set_access_token(request_url)
+  end
+
   # PUT /players/1
   # PUT /players/1.json
   def update

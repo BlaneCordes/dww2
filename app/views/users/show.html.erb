@@ -23,9 +23,6 @@
   <tr>
     <th>Provider</th>
     <th>User ID</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% if @user.authentications.any? %>
@@ -41,9 +38,3 @@
 <% end %>
 </table>
 
-
-<br/>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

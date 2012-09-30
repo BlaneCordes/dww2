@@ -1,10 +1,14 @@
 Dww2::Application.routes.draw do
 
+  # match "/free_agents/:id/add_nfl_player" => "free_agents#add_nfl_player"    
+  # match "free_agents/:id/add_nfl_player", to: "free_agents#add_nfl_player", via: "post"
 
   root :to => redirect("/users/sign_in")
   devise_for :users
   resources :users
-  resources :free_agents
+  resources :free_agents do
+    post 'add_nfl_player', :on => :collection
+  end
   resources :players
   resources :teams
   resources :emails
@@ -14,14 +18,16 @@ Dww2::Application.routes.draw do
   match "/auth/:provider/callback" => "authentications#create"
   match "/signout" => "authentications#destroy", :as => :signout
   match "/nfl_leagues" => "authentications#get_nfl_leagues"
+  match "/nfl_league_transactions" => "authentications#get_nfl_league_transactions"
   match "/mlb_leagues" => "authentications#get_mlb_leagues"
-  match "/nfl_players" => "authentications#get_nfl_players"
-  match "/poop" => "authentications#get_nfl_league_key"   
+  match "/nfl_players" => "authentications#get_nfl_players"  
   match "/mlb_league_players" => "authentications#get_top_mlb_free_agents"    
   match "/mlb_player" => "authentications#get_mlb_player" 
+  match "/nfl_player" => "authentications#get_nfl_player"
   match "/team_key" => "authentications#get_team_key"              
   match "/leagues" => "users#leagues"   
-  match "/current_user_info" => "authentications#current_user_info"      
+  match "/current_user_info" => "authentications#current_user_info"    
+  
             
 
 
