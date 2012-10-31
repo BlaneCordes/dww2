@@ -54,7 +54,7 @@ class PlayersController < ApplicationController
   end
 
   def get_mlb_player(player_name=nil)
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=rodriguez/ownership'
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=brach/ownership'
     set_access_token(request_url)
   end
 
@@ -94,5 +94,12 @@ class PlayersController < ApplicationController
       format.html { redirect_to players_url }
       format.json { head :no_content }
     end
+  end
+
+    def set_access_token(request_url)
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    render :json => data
   end
 end
