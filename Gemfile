@@ -26,6 +26,11 @@ group :development, :test do
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'
   gem 'spork', '0.9.2'
+   if RUBY_VERSION =~ /1.9/ 
+   gem 'ruby-debug19' 
+  else 
+   gem 'ruby-debug' 
+  end 
 end
 
 group :test do
@@ -60,4 +65,3 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
- gem 'ruby-debug19', :require => 'ruby-debug'
