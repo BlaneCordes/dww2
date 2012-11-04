@@ -1,7 +1,9 @@
 require 'spec_helper'
+require 'freeagent'
 
 describe FreeAgent do
 	it "should_not have a team" do
-	self.ownership == "freeagents"
-end
+		puts "first test"
+	# self.ownership == "freeagents"
+ end
 end
