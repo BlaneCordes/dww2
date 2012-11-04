@@ -4,6 +4,7 @@ class Player < ActiveRecord::Base
 
   belongs_to :team
 
+
  def set_access_token(request_url)
   access_token = session[:access_token]
   response = access_token.request(:get,request_url)
