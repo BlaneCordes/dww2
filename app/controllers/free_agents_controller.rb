@@ -1,6 +1,22 @@
 class FreeAgentsController < ApplicationController
-  # GET /free_agents
-  # GET /free_agents.json
+
+  
+  def add_nfl_player
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/nfl.l.263673/transactions;type=add;player=273.p.9004'
+    access_token = session[:access_token]
+    # debugger
+    response = access_token.request(:post, request_url)
+    # debugger
+    data = Hash.from_xml(response.body)
+    # debugger
+    render :json => data
+  end
+
+  def get_top_mlb_free_agents
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633;sort=AR;status=A;count=10'
+    set_access_token(request_url)
+  end
+
   def index
     @free_agents = FreeAgent.all
 
@@ -10,8 +26,6 @@ class FreeAgentsController < ApplicationController
     end
   end
 
-  # GET /free_agents/1
-  # GET /free_agents/1.json
   def show
     @free_agent = FreeAgent.find(params[:id])
 
@@ -21,8 +35,6 @@ class FreeAgentsController < ApplicationController
     end
   end
 
-  # GET /free_agents/new
-  # GET /free_agents/new.json
   def new
     @free_agent = FreeAgent.new
 
@@ -32,13 +44,10 @@ class FreeAgentsController < ApplicationController
     end
   end
 
-  # GET /free_agents/1/edit
   def edit
     @free_agent = FreeAgent.find(params[:id])
   end
 
-  # POST /free_agents
-  # POST /free_agents.json
   def create
     @free_agent = FreeAgent.new(params[:free_agent])
 
@@ -53,8 +62,6 @@ class FreeAgentsController < ApplicationController
     end
   end
 
-  # PUT /free_agents/1
-  # PUT /free_agents/1.json
   def update
     @free_agent = FreeAgent.find(params[:id])
 
@@ -69,8 +76,6 @@ class FreeAgentsController < ApplicationController
     end
   end
 
-  # DELETE /free_agents/1
-  # DELETE /free_agents/1.json
   def destroy
     @free_agent = FreeAgent.find(params[:id])
     @free_agent.destroy

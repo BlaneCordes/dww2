@@ -13,7 +13,18 @@ Dww2::Application.routes.draw do
 
   match "/auth/:provider/callback" => "authentications#create"
   match "/signout" => "authentications#destroy", :as => :signout
-
+  match "/nfl_leagues" => "authentications#get_nfl_leagues"
+  match "/nfl_league_transactions" => "authentications#get_nfl_league_transactions"
+  match "/mlb_leagues" => "authentications#get_mlb_leagues"
+  match "/nfl_players" => "authentications#get_nfl_players"  
+  match "/mlb_league_players" => "authentications#get_top_mlb_free_agents"    
+  match "/mlb_player" => "players#get_mlb_player" 
+  match "/nfl_player" => "players#get_nfl_player"
+  match "/team_key" => "authentications#get_team_key"              
+  match "/leagues" => "users#leagues"   
+  match "/current_user_info" => "authentications#current_user_info"    
+  
+            
 
 
   # The priority is based upon order of creation:

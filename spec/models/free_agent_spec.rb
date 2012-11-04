@@ -1,5 +1,9 @@
 require 'spec_helper'
+require 'freeagent'
 
 describe FreeAgent do
-  pending "add some examples to (or delete) #{__FILE__}"
+	it "should_not have a team" do
+		puts "first test"
+	# self.ownership == "freeagents"
+ end
 end

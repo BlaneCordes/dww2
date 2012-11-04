@@ -10,8 +10,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def leagues
+    @user = current_user
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/leagues'
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    render :json => data["fantasy_content"]
+  end
+
+
   def show
     @user = User.find(params[:id])
+    # @response = current_user.get_nfl if current_user.authentications.any?
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,8 +30,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def new
+    @user = User.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @user }
+    end
+  end
+
   def edit
     @user = User.find(params[:id])
+  end
+
+  def create
+    @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render json: @user, status: :created, location: @user }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

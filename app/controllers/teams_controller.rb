@@ -14,10 +14,11 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @team = Team.find(params[:id])
+    @response = @team.get_teams(session)
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @team }
+      format.json { render json: @response }
     end
   end
 
