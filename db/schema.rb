@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(:version => 20120918230822) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
-    t.string   "provider",   :limit => 2147483647
-    t.string   "uid",        :limit => 2147483647
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.string   "token",      :limit => 2147483647
-    t.string   "secret",     :limit => 2147483647
+    t.string   "provider",   :limit => 10485760
+    t.string   "uid",        :limit => 10485760
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "token",      :limit => 10485760
+    t.string   "secret",     :limit => 10485760
   end
 
   create_table "free_agents", :force => true do |t|
