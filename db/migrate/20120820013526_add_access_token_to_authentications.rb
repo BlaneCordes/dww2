@@ -1,6 +1,6 @@
 class AddAccessTokenToAuthentications < ActiveRecord::Migration
   def change
-    change_column :authentications, :token, :text, :limit => nil
+    add_column :authentications, :token, :string "provider", :limit => 2147483647
     add_column :authentications, :secret, :string
   end
 end
