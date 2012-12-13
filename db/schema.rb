@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918230822) do
+ActiveRecord::Schema.define(:version => 20121213200807) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "token"
-    t.string   "secret"
+    t.text     "provider",   :limit => 255
+    t.text     "uid",        :limit => 255
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.text     "token",      :limit => 255
+    t.text     "secret",     :limit => 255
   end
 
   create_table "free_agents", :force => true do |t|

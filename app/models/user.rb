@@ -42,4 +42,23 @@ class User < ActiveRecord::Base
     # access_token = OAuth::AccessToken.from_hash(consumer, token_hash)  #TODO This only works with single user (i.e public twitter). I need to get a request token and
     return access_token
   end
+
+#need to work on this for refreshing user tokens
+  # def refresh!
+  #   old_one = self
+  #   request_token = OAuth::RequestToken.new(YahooToken.consumer, self.token, self.secret)
+
+  #   options={}
+  #   options[:oauth_session_handle]=self.session_handle
+
+  #   access_token = request_token.get_access_token options
+  #   new_one = YahooToken.find_or_create_from_access_token self.user, access_token
+
+  #   if new_one
+  #     old_one.delete
+  #     return new_one
+  #   end
+
+  #   return nil
+  # end
 end
