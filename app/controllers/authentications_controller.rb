@@ -54,7 +54,6 @@ require 'json'
       
     end
   end
-
   
   def get_nfl_leagues
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=nfl/teams;output=json'
@@ -65,7 +64,6 @@ require 'json'
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/nfl.l.263673.t.9/roster/players;format=json'
     set_access_token(request_url)
   end
-  
 
   def get_mlb_leagues
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=mlb/teams;output=json'
@@ -79,7 +77,14 @@ require 'json'
 
   def get_nfl_league_transactions
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/nfl.l.263673/transactions'
-    set_access_token(request_url)
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    # player = data["fantasy_content"]["league"]["transactions"]["transaction"]["players"]["player"]["name"]["full"]
+    render :json => data["fantasy_content"]["league"]["transactions"]["transaction"][0]["players"]["player"][0]["name"]["full"]
+    # team = data["fantasy_content"]["league"]["transactions"]["transaction"]["players"]["player"]["transaction_data"]["destination_team_name"]
+  
+    # print "Breaking News: Team #{team} has #{transaction} #{player}"
   end
 
 

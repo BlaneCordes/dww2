@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   has_many :teams, :dependent => :destroy
+  has_many :players, :through => :teams
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -30,9 +31,6 @@ class User < ActiveRecord::Base
                                     :signature_method => 'HMAC-SHA1',
                                     :oauth_version => '1.0',
                                     :http_method => :get})
-
-
-    # raise request_token.inspect
 
     access_token = request_token.get_access_token
     # raise access_token.inspect
