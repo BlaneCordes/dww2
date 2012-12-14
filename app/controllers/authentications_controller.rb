@@ -3,7 +3,7 @@ require 'json'
 
   def index
     @authentications = current_user.authentications
-    get_nfl_leagues
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @authentications }
@@ -48,11 +48,6 @@ require 'json'
     response = access_token.request(:get, request_url)
     data = Hash.from_xml(response.body)
     teams = data["fantasy_content"]["users"]["user"]["games"]["game"]["teams"]
-
-    teams["team"].map do |team|
-      @team_key = team["team_key"]
-      
-    end
   end
   
   def get_nfl_leagues
@@ -79,20 +74,16 @@ require 'json'
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/nfl.l.263673/transactions'
     access_token = session[:access_token]
     response = access_token.request(:get, request_url)
-    data = Hash.from_xml(response.body)
+    render response
+    # data = Hash.from_xml(response.body)
     # player = data["fantasy_content"]["league"]["transactions"]["transaction"]["players"]["player"]["name"]["full"]
-    render :json => data["fantasy_content"]["league"]["transactions"]["transaction"][0]["players"]["player"][0]["name"]["full"]
-    # team = data["fantasy_content"]["league"]["transactions"]["transaction"]["players"]["player"]["transaction_data"]["destination_team_name"]
-  
-    # print "Breaking News: Team #{team} has #{transaction} #{player}"
+    # render :json => data["fantasy_content"]["league"]["transactions"]["transaction"][0]["players"]["player"][0]["name"]["full"]
   end
-
 
   def set_access_token(request_url)
     access_token = session[:access_token]
     response = access_token.request(:get, request_url)
     data = Hash.from_xml(response.body)
-    render :json => data
   end
 end
 
