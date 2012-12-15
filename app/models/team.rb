@@ -2,7 +2,7 @@ require 'open-uri'
 class Team < ActiveRecord::Base
   include ApiModule
     attr_accessible :name, :team_url, :team_key
-    validates :email, :uniqueness => true
+    # validates :name, :uniqueness => true
     belongs_to :user
     has_many :players
 

@@ -23,6 +23,7 @@ require 'json'
     )
 
     Team.get_team_details(session, current_user)
+    # get_players(session, current_user, team_key)
 
     #grab the users teams and rosters
     #set up delayed job to do this so user is not slowed down on the authentication

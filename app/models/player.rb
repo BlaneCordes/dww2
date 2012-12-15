@@ -8,14 +8,16 @@ class Player < ActiveRecord::Base
   response = access_token.request(:get,request_url)
   end
 
-  def self.parse_players
-  	#get the xml returned page
-  	#iterate through the page
-
-  	request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/nfl.l.182102.t.5/roster/players;output=json'
+  def get_players(session, user, team_id)
+  	request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/#{team_key}/roster/players;output=json'
   	set_access_token(request_url)
   	data = Hash.from_xml(response.body)
-  	render :json => data["fantasy_content"]["users"]["user"]["guid"]
+  	players = data["fantasy_content"]["team"]["roster"]["players"]["player"].each do |player|
+      new_player = Player.new
+      new_player.first_name = player["name"]["first"]
+      new_player.last_name = player["name"]["last"]
+      new_player.save
+    end
   end
 
 end
