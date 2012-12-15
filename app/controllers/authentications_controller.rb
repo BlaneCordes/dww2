@@ -55,15 +55,6 @@ require 'json'
     set_access_token(request_url)
   end
 
-  def get_nfl_league_transactions
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/nfl.l.263673/transactions'
-    access_token = session[:access_token]
-    response = access_token.request(:get, request_url)
-    render response
-    # data = Hash.from_xml(response.body)
-    # player = data["fantasy_content"]["league"]["transactions"]["transaction"]["players"]["player"]["name"]["full"]
-    # render :json => data["fantasy_content"]["league"]["transactions"]["transaction"][0]["players"]["player"][0]["name"]["full"]
-  end
 
   def set_access_token(request_url)
     access_token = session[:access_token]
