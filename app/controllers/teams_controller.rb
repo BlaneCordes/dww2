@@ -2,6 +2,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
+    current_user.get_teams(session)
     @teams = Team.all
 
     respond_to do |format|
@@ -26,10 +27,8 @@ class TeamsController < ApplicationController
   # GET /teams/new.json
   def new
     @team = Team.new
+    get_team_details(session)
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @team }
     end
   end
 

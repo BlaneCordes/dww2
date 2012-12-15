@@ -11,12 +11,10 @@ require 'json'
   end
 
   def create
-    ap request.env['omniauth.auth']
-    auth = request.env['omniauth.auth']
-    session[:access_token] = auth["extra"]["access_token"]
+   auth = request.env['omniauth.auth']
+   session[:access_token] = auth["extra"]["access_token"]
 
     #TODO: Need to either save the access_token here or persist it somewhere else
-    #Access is an OAuth object so I may be able to inherit it somehow
     user = current_user.authentications.find_by_provider_and_uid(auth["provider"], auth["uid"]) ||
       Authentication.create!(
         :user_id => current_user.id,
@@ -24,6 +22,9 @@ require 'json'
         :uid => auth["uid"], :token => auth["credentials"]["token"],
         :secret => auth["credentials"]["secret"]
     )
+
+    #grab the users teams and rosters
+    #set up delayed job to do this so user is not slowed down on the authentication
     redirect_to user_path(current_user), :notice => "Connected with Yahoo!"
   end
 
@@ -32,22 +33,6 @@ require 'json'
     @authentication.destroy
     flash[:notice] = "Successfully destroyed authentication"
     redirect_to users_path(current_user)
-  end
-
-  def current_user_info
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s
-    access_token = session[:access_token]
-    response = access_token.request(:get, request_url)
-    data = Hash.from_xml(response.body)
-    render :json => data
-  end
-
-  def get_team_key
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=nfl/teams;output=json'
-    access_token = session[:access_token]
-    response = access_token.request(:get, request_url)
-    data = Hash.from_xml(response.body)
-    teams = data["fantasy_content"]["users"]["user"]["games"]["game"]["teams"]
   end
   
   def get_nfl_leagues

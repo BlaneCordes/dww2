@@ -1,4 +1,7 @@
+require 'open-uri'
+
 class User < ActiveRecord::Base
+  include ApiModule
   has_many :authentications, :dependent => :destroy
   has_many :teams, :dependent => :destroy
   has_many :players, :through => :teams
@@ -39,6 +42,20 @@ class User < ActiveRecord::Base
 
     # access_token = OAuth::AccessToken.from_hash(consumer, token_hash)  #TODO This only works with single user (i.e public twitter). I need to get a request token and
     return access_token
+  end
+
+  def get_teams(session)
+    request_url = "http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=#{self.id}/games;game_keys=mlb/teams?format=json"
+    http_method = "get"
+    build_request(http_method, request_url, session)
+  end
+
+  def current_user_info
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    render :json => data
   end
 
 #need to work on this for refreshing user tokens

@@ -13,6 +13,10 @@ Dww2::Application.routes.draw do
 
   match "/auth/:provider/callback" => "authentications#create"
   match "/signout" => "authentications#destroy", :as => :signout
+  match "/teams" => "teams#get_teams"
+
+
+
   match "/nfl_leagues" => "authentications#get_nfl_leagues"
   match "/nfl_league_transactions" => "authentications#get_nfl_league_transactions"
   match "/mlb_leagues" => "authentications#get_mlb_leagues"
@@ -20,7 +24,7 @@ Dww2::Application.routes.draw do
   match "/my_mlb_players" => "authentications#get_my_mlb_players"    
   match "/mlb_player" => "players#get_mlb_player" 
   match "/nfl_player" => "players#get_nfl_player"
-  match "/team_key" => "authentications#get_team_key"              
+  match "/team_key" => "teams#get_team_key"              
   match "/leagues" => "users#leagues"   
   match "/current_user_info" => "authentications#current_user_info"    
   
