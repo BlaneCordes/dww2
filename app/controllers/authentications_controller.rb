@@ -1,5 +1,6 @@
 class AuthenticationsController < ApplicationController
 require 'json'
+ after_save Team.new(arguments = nil)
 
   def index
     @authentications = current_user.authentications
@@ -8,6 +9,10 @@ require 'json'
       format.html # index.html.erb
       format.json { render json: @authentications }
     end
+  end
+
+  def self.scream
+    puts "before save!!!"
   end
 
   def create
