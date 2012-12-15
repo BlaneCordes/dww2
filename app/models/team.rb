@@ -1,17 +1,10 @@
 require 'open-uri'
 class Team < ActiveRecord::Base
   include ApiModule
+    attr_accessible :name, :team_url, :team_key
+    belongs_to :user
+    has_many :players
 
-  attr_accessible :name, :team_url, :team_key
-
-  alias_method :after_save
-
-  belongs_to :user
-  has_many :players
-
-  def after_save
-    Team.new
-  end
 
   def get_teams(session)
     request_url = "http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=#{current_user.id}/games;game_keys=mlb/teams?format=json"
