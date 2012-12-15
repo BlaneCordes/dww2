@@ -17,7 +17,7 @@ Dww2::Application.routes.draw do
 
 
 
-  match "/nfl_leagues" => "authentications#get_nfl_leagues"
+  match "/nfl_teams" => "authentications#get_nfl_teams"
   match "/nfl_league_transactions" => "authentications#get_nfl_league_transactions"
   match "/mlb_leagues" => "authentications#get_mlb_leagues"
   match "/nfl_players" => "authentications#get_nfl_players"  

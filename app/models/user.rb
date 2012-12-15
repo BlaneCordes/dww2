@@ -45,13 +45,13 @@ class User < ActiveRecord::Base
   end
 
   def get_teams(session)
-    request_url = "http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=#{self.id}/games;game_keys=mlb/teams?format=json"
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
     http_method = "get"
     build_request(http_method, request_url, session)
   end
 
   def current_user_info
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
     access_token = session[:access_token]
     response = access_token.request(:get, request_url)
     data = Hash.from_xml(response.body)

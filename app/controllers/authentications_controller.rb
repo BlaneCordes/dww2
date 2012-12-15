@@ -1,7 +1,5 @@
 class AuthenticationsController < ApplicationController
 require 'json'
- after_save Team.new(arguments = nil)
-
   def index
     @authentications = current_user.authentications
 
@@ -9,10 +7,6 @@ require 'json'
       format.html # index.html.erb
       format.json { render json: @authentications }
     end
-  end
-
-  def self.scream
-    puts "before save!!!"
   end
 
   def create
@@ -28,9 +22,7 @@ require 'json'
         :secret => auth["credentials"]["secret"]
     )
 
-    @user = User.find(current_user.id)
-    @team = @user.teams.new
-    @team.get_team_details(session, current_user, @team)
+    Team.get_team_details(session, current_user)
 
     #grab the users teams and rosters
     #set up delayed job to do this so user is not slowed down on the authentication
@@ -44,8 +36,8 @@ require 'json'
     redirect_to users_path(current_user)
   end
 
-  def get_nfl_leagues
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=nfl/teams;output=json'
+  def get_nfl_teams
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
     set_access_token(request_url)
   end
 
@@ -64,11 +56,11 @@ require 'json'
     set_access_token(request_url)
   end
 
-
   def set_access_token(request_url)
     access_token = session[:access_token]
     response = access_token.request(:get, request_url)
     data = Hash.from_xml(response.body)
+    render :json => data
   end
 end
 
