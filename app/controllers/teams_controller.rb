@@ -15,11 +15,12 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @team = Team.find(params[:id])
-    @response = @team.get_teams(session)
+
+    @response = @team.get_teams(session) if !@team
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @response }
+      # format.json { render json: @response }
     end
   end
 
@@ -29,7 +30,6 @@ class TeamsController < ApplicationController
     @team = Team.new
     get_team_details(session)
 
-    end
   end
 
   # GET /teams/1/edit
