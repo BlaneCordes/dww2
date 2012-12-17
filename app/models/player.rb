@@ -8,7 +8,8 @@ class Player < ActiveRecord::Base
   response = access_token.request(:get,request_url)
   end
 
-  def get_players(session, user, team_id)
+  def get_players(session, user)
+    team_key = user.teams.team_key
   	request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/#{team_key}/roster/players;output=json'
   	set_access_token(request_url)
   	data = Hash.from_xml(response.body)
