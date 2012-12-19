@@ -16,15 +16,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
 
-  #TODO: NEED TO REMOVE THIS CODE
-   def get_nfl
-    auth = self.authentications.find(:first, :conditions => { :provider => 'yahoo'}) if self
-    access_token = prepare_access_token(auth[:token], auth[:secret])
-    yahoo_guid = access_token.params[:xoauth_yahoo_guid]
-
-    response = access_token.request(:get, 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games/leagues' )
-  end
-
   def prepare_access_token(oauth_token, oauth_token_secret)
     consumer = OAuth::Consumer.new(YAHOO_CONFIG['YAHOO_TOKEN'], YAHOO_CONFIG['YAHOO_SECRET'],
                                    {:site => 'https://api.login.yahoo.com',
@@ -44,19 +35,7 @@ class User < ActiveRecord::Base
     return access_token
   end
 
-  def get_teams(session)
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
-    http_method = "get"
-    build_request(http_method, request_url, session)
-  end
 
-  def current_user_info
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
-    access_token = session[:access_token]
-    response = access_token.request(:get, request_url)
-    data = Hash.from_xml(response.body)
-    render :json => data
-  end
 
 #need to work on this for refreshing user tokens
   # def refresh!
@@ -76,4 +55,5 @@ class User < ActiveRecord::Base
 
   #   return nil
   # end
+
 end

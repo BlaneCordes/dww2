@@ -31,9 +31,6 @@
       <td><%= auth.provider %></td>
       <td><%= auth.uid %></td>
       <td><%= link_to 'Destroy', auth, confirm: 'Are you sure?', method: :delete %></td>
-      <% if !@user.teams.any? %>
-        <td><%= link_to 'Get Team Details', method: get_team_details(@user) %></td>
-      <% end %>
     </tr>
   <% end %>
 <% else %>
@@ -44,15 +41,16 @@
 <table>
   <tr>
     <th>Team Name</th>
+    <th>Players</th>
   </tr>
 
 
 <% if @user.teams.any? %>
-  <% @user.teams.each do |team| %>
-    <tr>
-      <td><%= team.name %></td>
-      <td><%= link_to 'View Team', team_path(team.id) %></td>
-    </tr>
+    <% @user.teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td><%= link_to 'View Team', team_path(team.id) %></td>
+      </tr>
   <% end %>
 <% end %>
 
