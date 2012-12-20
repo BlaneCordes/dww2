@@ -32,7 +32,7 @@ class Team < ActiveRecord::Base
           new_player = Player.new
           new_player.first_name = player["name"]["first"]
           new_player.last_name = player["name"]["last"]
-          new_player.team_id = Team.find_by_team_key(team_key)
+          new_player.team_id = Team.find_by_team_key(team_key).id
           new_player.save
         end
     end
