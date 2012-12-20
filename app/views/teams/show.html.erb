@@ -16,12 +16,18 @@
   <tr>
     <th>First name</th>
     <th>Last name</th>
+    <th>Team</th>
+    <th>Eligible Position</th>
+    <th>Roster Status</th>
   </tr>
 
 <% @team.players.each do |player| %>
   <tr>
     <td><%= player.first_name %></td>
     <td><%= player.last_name %></td>
+    <td><%= player.nfl_team %></td>
+    <td><%= player.eligible_positions %></td>
+    <td><%= player.roster_position %></td>
   </tr>
 <% end %>
 </table>

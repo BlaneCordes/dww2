@@ -32,6 +32,10 @@ class Team < ActiveRecord::Base
           new_player = Player.new
           new_player.first_name = player["name"]["first"]
           new_player.last_name = player["name"]["last"]
+          new_player.eligible_positions = player["eligible_positions"]["position"]
+          new_player.roster_position = player["selected_position"]["position"]
+          new_player.nfl_team = player["editorial_team_full_name"]
+          new_player.player_key = player["editorial_player_key"]
           new_player.team_id = Team.find_by_team_key(team_key).id
           new_player.save
         end

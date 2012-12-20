@@ -2,7 +2,6 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    current_user.get_teams(session)
     @teams = Team.all
 
     respond_to do |format|
