@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_filter :authenticate_user!
 
   protect_from_forgery
 
@@ -19,6 +20,7 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+  
   helper_method :admin?
 
   def authorize
