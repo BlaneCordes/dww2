@@ -5,4 +5,6 @@ describe Player do
     visit '/players'
     page.should have_content
   end
+
+  it "should save the proper data"
 end

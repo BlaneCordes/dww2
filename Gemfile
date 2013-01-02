@@ -16,6 +16,7 @@ gem 'httparty'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-yahoo'
+gem 'feedzirra'
 
 
 group :development, :test do
