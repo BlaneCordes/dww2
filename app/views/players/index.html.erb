@@ -1,25 +1,15 @@
-<h1>Listing players</h1>
+<h1>Latest Player News</h1>
 
 <table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Date</th>
+    <th>Title</th>
   </tr>
 
-<% @players.each do |player| %>
+<% @player_news.each do |player_news| %>
   <tr>
-    <td><%= player.first_name %></td>
-    <td><%= player.last_name %></td>
-    <td><%= link_to 'Show', player %></td>
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
-    <td><%= link_to 'Destroy', player, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= player_news.created_at.strftime("%d %b") %></td>
+    <td><%= player_news.title %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Player', new_player_path %>
