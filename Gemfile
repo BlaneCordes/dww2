@@ -10,15 +10,17 @@ gem 'nokogiri'
 gem 'ap'
 gem 'awesome_print'
 gem 'crack'
-gem 'pg'
-gem 'sqlite3'
 gem 'thin'
 gem 'httparty'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'feedzirra'
+gem 'sqlite3'
 
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
   gem 'sqlite3'
