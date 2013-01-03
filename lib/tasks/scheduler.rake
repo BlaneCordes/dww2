@@ -1,15 +1,15 @@
 desc "This task is called by the Heroku scheduler add-on"
 
 
-task :scrape_league_players => :environment do
-    puts "Scraping the current teams from Yahoo.."
-    Team.scrape_yahoo_league
+task :grab_nfl_player_news => :environment do
+    puts "Scraping Most Added Players.."
+    PlayerFeed.update_from_feed("http://www.rotoworld.com/rss/feed.aspx?sport=nfl&ftype=news&format=rss")
     puts "done."
 end
 
-task :scrape_most_added_players => :environment do
+task :grab_mlb_player_news => :environment do
     puts "Scraping Most Added Players.."
-    FreeAgent.scrape_free_agents
+    PlayerFeed.update_from_feed("http://www.rotoworld.com/rss/feed.aspx?sport=mlb&ftype=news&format=rss")
     puts "done."
 end
 
