@@ -16,6 +16,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'feedzirra'
+gem 'sqlite3'
 
 group :development, :test do
   gem 'sqlite3'
