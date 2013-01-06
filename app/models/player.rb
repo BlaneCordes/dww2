@@ -1,6 +1,6 @@
 require 'open-uri'
 class Player < ActiveRecord::Base
-  attr_accessible :first_name, :last_name
+  attr_accessible :first_name, :last_name, :player_id, :id
 
   belongs_to :team
   has_many :player_feeds

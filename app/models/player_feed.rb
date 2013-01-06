@@ -25,10 +25,10 @@ class PlayerFeed < ActiveRecord::Base
 
 	def self.find_player(entry)
 		player_string = entry.title.split(' - ')
-  	player_name = player_string[1].scan(/^([.a-zA-z\-]+) ([a-zA-z]+\W+[a-zA-z]+)/).flatten
+  	player_name = player_string[1].scan(/^([.a-zA-z\-]+) ([a-zA-z]+[\w|\-][a-zA-z]+)/).flatten
   	first_name = player_name[0]
   	last_name = player_name[1]
-  	player = Player.where(:first_name => first_name, :last_name => last_name)
+  	player = Player.find_by_first_name_and_last_name(first_name, last_name)
 			if player.present? 
 				player.id
 			else
