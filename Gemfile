@@ -16,7 +16,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'feedzirra'
-gem 'sqlite3'
+# gem 'sqlite3'  #for some reason this causes error when pushing to heroku
 
 group :development, :test do
   gem 'sqlite3'
