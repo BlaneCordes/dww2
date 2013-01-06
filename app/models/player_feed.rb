@@ -16,21 +16,23 @@ class PlayerFeed < ActiveRecord::Base
 		      :player_id    => find_player(entry)
 		    )
 		  end
+		  #send email notification if player is on roster
 		end
 	end
 
-	#TODO need to update regular expression for weird names like I used to have ie McCann
+	#regex should work on all name formats, only outlier is if person has two first names not
+	#seperated by a hyphen i.e. John Michael Smith would cause an issue
 
 	def self.find_player(entry)
 		player_string = entry.title.split(' - ')
-  	player_name = player_string[1].scan(/([A-Z][a-z]+\s)/).join.chop.split(" ")
+  	player_name = player_string[1].scan(/^([.a-zA-z\-]+) ([a-zA-z]+\W+[a-zA-z]+)/).flatten
   	first_name = player_name[0]
   	last_name = player_name[1]
   	player = Player.where(:first_name => first_name, :last_name => last_name)
 			if player.present? 
 				player.id
 			else
-				0
+				00
 			end
   end
 

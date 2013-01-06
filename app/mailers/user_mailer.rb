@@ -4,6 +4,6 @@ class UserMailer < ActionMailer::Base
   def welcome_email(user)
     @user = user
     @url  = "www.dailywaiverwire.com"
-    mail(:to => user.email, :subject => "Wecome to the Daily Waiver Wire")
+    mail(:to => user.email, :subject => "Welcome to the Daily Waiver Wire", :from => "dailywaiverwire@gmail.com")
   end
 end

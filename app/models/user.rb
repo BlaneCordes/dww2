@@ -2,6 +2,7 @@ require 'open-uri'
 
 class User < ActiveRecord::Base
   include ApiModule
+  after_create :send_welcome_message
   has_many :authentications, :dependent => :destroy
   has_many :teams, :dependent => :destroy
   has_many :players, :through => :teams
@@ -35,6 +36,11 @@ class User < ActiveRecord::Base
     return access_token
   end
 
+  private
+
+  def send_welcome_message
+    UserMailer.welcome_email(self).deliver
+  end
 
 
 #need to work on this for refreshing user tokens
