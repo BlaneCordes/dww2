@@ -10,6 +10,13 @@
   <%= @player.last_name %>
 </p>
 
+<p>
+  <b>Latest News:</b>
+  <% @player.player_feeds.each do |news_article| %>
+  <%= news_article.title %>
+  <% end %>
+</p>
+
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>
