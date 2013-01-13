@@ -2,6 +2,7 @@ require 'open-uri'
 class Player < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :player_id, :id
 
+  # TODO: Players can be on more than one team, need to introduce leagues 
   belongs_to :team
   has_many :player_feeds
 

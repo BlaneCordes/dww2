@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,7 +16,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'feedzirra'
-# gem 'sqlite3'  # for some reason this causes error when pushing to heroku
+ gem 'sqlite3'  # for some reason this causes error when pushing to heroku
 
 group :development, :test do
   gem 'sqlite3'
@@ -32,8 +32,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'cucumber-rails' 
+  gem 'database_cleaner' # database_cleaner is not required, but highly recommended
   gem 'sqlite3'
-  gem 'cucumber', '1.2.1'
   gem 'capybara', '1.1.2'
   gem 'rb-fsevent', '0.9.1', :require => false
   gem 'growl', '1.0.3'
