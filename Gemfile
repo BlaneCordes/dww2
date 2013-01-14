@@ -24,6 +24,7 @@ group :development, :test do
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'
   gem 'spork', '0.9.2'
+  gem 'webmock', '1.9.0'
    if RUBY_VERSION =~ /1.9/ 
    gem 'ruby-debug19' 
   else 
