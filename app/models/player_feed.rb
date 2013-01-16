@@ -36,4 +36,11 @@ class PlayerFeed < ActiveRecord::Base
 			end
   end
 
+  def player_triggers(entry)
+  	#if the news udpate contains a trigger, perform an action on behalf of the user
+  end
+
+  def test
+  end
+
 end
