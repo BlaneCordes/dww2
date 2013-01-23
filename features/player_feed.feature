@@ -8,5 +8,9 @@ Feature: player feed of real-time updates and news
 		Given rotoworld has posted a new update on a specific player
 		When my application scrapes rotoworld for new updates
 		Then I should see that new update in my player feed
+<<<<<<< HEAD
 		test
+=======
+		
+>>>>>>> newsfeed
 
