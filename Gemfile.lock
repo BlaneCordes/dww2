@@ -127,6 +127,7 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     multi_xml (0.5.1)
+    newrelic_rpm (3.5.5.38)
     nokogiri (1.5.5)
     oauth (0.4.6)
     omniauth (1.1.0)
@@ -252,6 +253,7 @@ DEPENDENCIES
   guard-spork (= 1.2.0)
   httparty
   jquery-rails
+  newrelic_rpm
   nokogiri
   omniauth
   omniauth-yahoo

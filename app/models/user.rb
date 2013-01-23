@@ -42,6 +42,15 @@ class User < ActiveRecord::Base
     UserMailer.welcome_email(self).deliver
   end
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |player|
+        csv << player.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 
 #need to work on this for refreshing user tokens
   # def refresh!

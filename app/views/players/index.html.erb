@@ -1,5 +1,10 @@
 <h1>Latest Player News</h1>
 
+<p>
+  Download:
+  <%= link_to "CSV", players_path(format: "csv") %>
+</p>
+
 <table>
   <tr>
     <th>Date</th>
@@ -13,3 +18,5 @@
   </tr>
 <% end %>
 </table>
+
+

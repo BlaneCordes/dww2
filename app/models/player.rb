@@ -9,6 +9,15 @@ class Player < ActiveRecord::Base
   validates_uniqueness_of :last_name, :scope => :team_id
   validates_uniqueness_of :first_name, :scope => :team_id
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |player|
+        csv << player.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 
 
 end
