@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe PlayerFeed do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  it "should do something" do
+  	PlayerFeed.new
+  end
 end
