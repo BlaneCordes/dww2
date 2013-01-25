@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104045929) do
+ActiveRecord::Schema.define(:version => 20130125022443) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -21,19 +21,6 @@ ActiveRecord::Schema.define(:version => 20130104045929) do
     t.datetime "updated_at",                     :null => false
     t.string   "token",      :limit => 10485760
     t.string   "secret",     :limit => 10485760
-  end
-
-  create_table "free_agents", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "pages", :force => true do |t|
-    t.string   "home"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "player_feeds", :force => true do |t|
