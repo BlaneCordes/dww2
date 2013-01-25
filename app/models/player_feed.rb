@@ -36,8 +36,18 @@ class PlayerFeed < ActiveRecord::Base
 			end
   end
 
-  def player_triggers(entry)
-  	#if the news udpate contains a trigger, perform an action on behalf of the user
+  def self.player_triggers(entry)
+  	text = entry.description
+	  	if
+		  	text.match(/[Ii]njur/)
+		  	text.match(/[Nn]ot [Pp]lay/)
+		  	text.match(/[Nn]ot be [Pp]lay/)
+		  	text.match(/[Nn]ot in lineup/)
+				text.match(/[Oo]ut of lineup/)
+				EmailUser(current_user.id)
+			else
+				puts "no update in this article"
+			end
   end
 
   def test
