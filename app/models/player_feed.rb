@@ -15,8 +15,8 @@ class PlayerFeed < ActiveRecord::Base
 		      :guid         => entry.id,
 		      :player_id    => find_player(entry)
 		    )
+		  PlayerFeed.player_triggers(entry)
 		  end
-		  #send email notification if player is on roster
 		end
 	end
 
@@ -28,37 +28,34 @@ class PlayerFeed < ActiveRecord::Base
   	player_name = player_string[1].scan(/^([.a-zA-z\-]+) ([a-zA-z]+[\w|\-][a-zA-z]+)/).flatten
   	first_name = player_name[0]
   	last_name = player_name[1]
-  	player = Player.find_by_first_name_and_last_name(first_name, last_name)
-			if player.present? 
+  		if Player.find_by_first_name_and_last_name(first_name, last_name) != nil
 				player.id
 			else
-				00
+				Player.create!(:first_name => first_name, :last_name => last_name)
 			end
   end
 
   def self.player_triggers(entry)
-  	text = entry.description
+  	text = entry.summary
 	  	case 
 		  	when text.match(/[Ii]njur/)
-		  		puts "we got a match injury"
+		  		InjuryAlert.send_injury_alert(1).deliver
 		  	when text.match(/[Nn]ot [Pp]lay/)
-		  		puts "we got a match to not playing"
+		  		InjuryAlert.send_injury_alert(1).deliver
 		  	when text.match(/[Nn]ot be [Pp]lay/)
-		  		puts "we got a match to not playing!"
+		  		InjuryAlert.send_injury_alert(1).deliver
 		  	when text.match(/[Nn]ot in lineup/)
-		  		puts "we got a match to not in lineup!"
+		  		InjuryAlert.send_injury_alert(1).deliver
 				when text.match(/[Oo]ut of lineup/)
-					puts "we got a match to out of lineup!"
+		  		InjuryAlert.send_injury_alert(1).deliver
 				when text.match(/contract/)
-					puts "we got a match to contract!"
+		  		InjuryAlert.send_injury_alert(1).deliver
 				when text.match(/contract/)
-					puts "we got a match to contract!"
+		  		InjuryAlert.send_injury_alert(1).deliver
 			else
 				puts "no update in this article"
 			end
   end
 
-  def test
-  end
 
 end
