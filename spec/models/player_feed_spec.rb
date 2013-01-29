@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe PlayerFeed do
   
-  it "should instantiate a new PlayerFeed object"	do
+  it "should do something" do
   	PlayerFeed.new
   end
 
-  it "should" do
+  it "should get articles" do
   end
 end
+>>>>>>> master

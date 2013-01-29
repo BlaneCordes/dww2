@@ -36,4 +36,29 @@ class PlayerFeed < ActiveRecord::Base
 			end
   end
 
+  def self.player_triggers(entry)
+  	text = entry.description
+	  	case 
+		  	when text.match(/[Ii]njur/)
+		  		puts "we got a match injury"
+		  	when text.match(/[Nn]ot [Pp]lay/)
+		  		puts "we got a match to not playing"
+		  	when text.match(/[Nn]ot be [Pp]lay/)
+		  		puts "we got a match to not playing!"
+		  	when text.match(/[Nn]ot in lineup/)
+		  		puts "we got a match to not in lineup!"
+				when text.match(/[Oo]ut of lineup/)
+					puts "we got a match to out of lineup!"
+				when text.match(/contract/)
+					puts "we got a match to contract!"
+				when text.match(/contract/)
+					puts "we got a match to contract!"
+			else
+				puts "no update in this article"
+			end
+  end
+
+  def test
+  end
+
 end
