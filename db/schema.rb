@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125022443) do
+ActiveRecord::Schema.define(:version => 20130203181528) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -35,15 +35,14 @@ ActiveRecord::Schema.define(:version => 20130125022443) do
   end
 
   create_table "players", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "team_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "eligible_positions"
     t.string   "roster_position"
-    t.string   "nfl_team"
     t.string   "player_key"
+    t.string   "name"
+    t.string   "team"
+    t.integer  "age"
   end
 
   create_table "sessions", :force => true do |t|
@@ -55,6 +54,49 @@ ActiveRecord::Schema.define(:version => 20130125022443) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "statistics", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "wins"
+    t.integer  "losses"
+    t.float    "earned_run_average"
+    t.integer  "games"
+    t.integer  "games_started"
+    t.integer  "games_finished"
+    t.integer  "complete_games"
+    t.integer  "shutouts"
+    t.integer  "saves"
+    t.float    "innings_pitched"
+    t.integer  "hits"
+    t.integer  "runs"
+    t.integer  "earned_runs"
+    t.integer  "home_runs"
+    t.integer  "walks"
+    t.integer  "intentional_walks"
+    t.integer  "strikeouts"
+    t.integer  "hit_by_pitch"
+    t.integer  "balks"
+    t.integer  "wild_pitches"
+    t.integer  "batters_faced"
+    t.float    "walks_hits_per_innings_pitched"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "season"
+    t.integer  "plate_appearances"
+    t.integer  "at_bats"
+    t.integer  "doubles"
+    t.integer  "triples"
+    t.integer  "runs_batted_in"
+    t.integer  "stolen_bases"
+    t.integer  "caught_stealing"
+    t.float    "batting_average"
+    t.float    "on_base_percentage"
+    t.float    "slugging_percentage"
+    t.float    "on_base_plus_slugging_percentage"
+    t.integer  "total_bases"
+    t.integer  "double_plays"
+    t.integer  "sacrifice_flies"
+  end
 
   create_table "teams", :force => true do |t|
     t.string   "name"

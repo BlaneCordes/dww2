@@ -17,13 +17,14 @@ gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'feedzirra'
 gem 'newrelic_rpm'
-#gem 'sqlite3'  # for some reason this causes error when pushing to heroku
+#gem 'pg', '0.14.0'
+gem 'sqlite3'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails', '2.12.0'
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'
+  gem 'sqlite3'
   gem 'spork', '0.9.2'
   gem 'webmock', '1.9.0'
    if RUBY_VERSION =~ /1.9/ 
