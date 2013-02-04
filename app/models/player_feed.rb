@@ -23,6 +23,7 @@ class PlayerFeed < ActiveRecord::Base
 	#regex should work on all name formats, only outlier is if person has two first names not
 	#seperated by a hyphen i.e. John Michael Smith would cause an issue
 
+	#TODO need to tweak regex since names are now 1 field instead of first and last
 	def self.find_player(entry)
 		player_string = entry.title.split(' - ')
   	player_name = player_string[1].scan(/^([.a-zA-z\-]+) ([a-zA-z]+[\w|\-][a-zA-z]+)/).flatten
