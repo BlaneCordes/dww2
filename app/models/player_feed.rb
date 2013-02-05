@@ -15,24 +15,22 @@ class PlayerFeed < ActiveRecord::Base
 		      :guid         => entry.id,
 		      :player_id    => find_player(entry)
 		    )
-		  PlayerFeed.player_triggers(entry)
+		  #PlayerFeed.player_triggers(entry)
 		  end
 		end
 	end
 
-	#regex should work on all name formats, only outlier is if person has two first names not
-	#seperated by a hyphen i.e. John Michael Smith would cause an issue
-
-	#TODO need to tweak regex since names are now 1 field instead of first and last
 	def self.find_player(entry)
 		player_string = entry.title.split(' - ')
   	player_name = player_string[1].scan(/^([.a-zA-z\-]+) ([a-zA-z]+[\w|\-][a-zA-z]+)/).flatten
-  	first_name = player_name[0]
-  	last_name = player_name[1]
-		if Player.find_by_first_name_and_last_name(first_name, last_name) != nil
+  	name = player_name.join(" ")
+		if Player.find_by_name(name) != nil
+			player = Player.find_by_name(name)
 			player.id
 		else
-			Player.create!(:first_name => first_name, :last_name => last_name)
+			player = Player.new
+			player.name = name
+			player.save!
 		end
   end
 

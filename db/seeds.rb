@@ -7,7 +7,7 @@ pitchers.each_line do |line|
 	array = line.split(",")
 	player = Player.new
 	stat = Statistic.new
-		player.name = array[1]
+		player.name = array[1].chomp.delete("#")
 		player.age = array[2]
 		player.team = array[3]
 		stat.season = 2012
@@ -44,7 +44,7 @@ batters.each_line do |line|
 	array = line.split(",")
 	player = Player.new
 	stat = Statistic.new
-		player.name = array[1]
+		player.name = array[1].chomp.delete("#")
 		player.age = array[2]
 		player.team = array[3]
 		stat.season = 2012
