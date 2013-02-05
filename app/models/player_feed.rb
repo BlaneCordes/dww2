@@ -29,16 +29,16 @@ class PlayerFeed < ActiveRecord::Base
   	player_name = player_string[1].scan(/^([.a-zA-z\-]+) ([a-zA-z]+[\w|\-][a-zA-z]+)/).flatten
   	first_name = player_name[0]
   	last_name = player_name[1]
-  		if Player.find_by_first_name_and_last_name(first_name, last_name) != nil
-				player.id
-			else
-				Player.create!(:first_name => first_name, :last_name => last_name)
-			end
+		if Player.find_by_first_name_and_last_name(first_name, last_name) != nil
+			player.id
+		else
+			Player.create!(:first_name => first_name, :last_name => last_name)
+		end
   end
 
   def self.player_triggers(entry)
   	text = entry.summary
-	  	case 
+	  	case
 		  	when text.match(/[Ii]njur/)
 		  		InjuryAlert.send_injury_alert(1).deliver
 		  	when text.match(/[Nn]ot [Pp]lay/)
