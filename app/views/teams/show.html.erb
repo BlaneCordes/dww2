@@ -14,8 +14,7 @@
 
 <table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
+    <th>Name</th>
     <th>Team</th>
     <th>Eligible Position</th>
     <th>Roster Status</th>
@@ -23,8 +22,7 @@
 
 <% @team.players.each do |player| %>
   <tr>
-    <td><%= link_to player.first_name, player_path(player) %></td> 
-    <td><%= player.last_name %></td>
+    <td><%= link_to player.name, player_path(player) %></td> 
     <td><%= player.nfl_team %></td>
     <td><%= player.eligible_positions %></td>
     <td><%= player.roster_position %></td>
