@@ -1,6 +1,8 @@
 class PlayerFeed < ActiveRecord::Base
 	attr_accessible :guid, :description, :title, :url, :published_at, :player_id
-	belongs_to :player
+	
+	has_many :player_articles
+	has_many :players, :through => :player_articles
 
 
 	def self.update_from_feed(feed_url)
@@ -13,8 +15,10 @@ class PlayerFeed < ActiveRecord::Base
 		      :url          => entry.url,
 		      :published_at => entry.published,
 		      :guid         => entry.id,
-		      :player_id    => find_player(entry)
 		    )
+		    
+		    find_player(entry)
+
 		  #PlayerFeed.player_triggers(entry)
 		  end
 		end
@@ -26,7 +30,11 @@ class PlayerFeed < ActiveRecord::Base
   	name = player_name.join(" ")
 		if Player.find_by_name(name) != nil
 			player = Player.find_by_name(name)
-			player.id
+			article = PlayerFeed.find_by_guid(entry.id)
+			player_article = PlayerArticle.new
+			player_article.player_id = player.id
+			player_article.player_feed_id = article.id
+			player_article.save
 		else
 			player = Player.new
 			player.name = name

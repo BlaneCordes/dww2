@@ -22,8 +22,8 @@ require 'json'
         :secret => auth["credentials"]["secret"]
     )
 
-      Team.get_team_details(session, current_user)
-      Team.get_players(session, current_user)
+      # Team.get_team_details(session, current_user)
+      # Team.get_players(session, current_user)
 
     #grab the users teams and rosters
     #set up delayed job to do this so user is not slowed down on the authentication

@@ -1,21 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>First name:</b>
-  <%= @player.first_name %>
-</p>
+<h1> <%= @player.name %> </h1>
 
-<p>
-  <b>Last name:</b>
-  <%= @player.last_name %>
-</p>
+<table>
+	<tr>
+	  <th>Article</th>
+	</tr>
 
-<p>
-  <b>Latest News:</b>
-  <% @player.player_feeds.each do |news_article| %>
-  <%= news_article.title %>
-  <% end %>
-</p>
+	<tr>
+	  <% @player.player_articles.each do |article| %>
+	  	<% current_article = PlayerFeed.find(article.player_feed_id) %>
+	  	<td><%= current_article.description %></td>	
+	</tr>
+	<% end %>
+</table>
 
 
 <%= link_to 'Edit', edit_player_path(@player) %> |

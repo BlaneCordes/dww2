@@ -3,7 +3,6 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.all
-    @player_news = PlayerFeed.all
 
     respond_to do |format|
       format.html # index.html.erb
