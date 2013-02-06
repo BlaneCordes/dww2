@@ -10,9 +10,28 @@
 	<tr>
 	  <% @player.player_articles.each do |article| %>
 	  	<% current_article = PlayerFeed.find(article.player_feed_id) %>
-	  	<td><%= current_article.description %></td>	
+	  	<td><%= current_article.description %></td>
 	</tr>
 	<% end %>
+</table>
+
+<table>
+  <tr>
+    <th>Stats</th>
+    <th>Games</th>
+    <th>Batting Average</th>
+    <th>Home Runs</th>
+  </tr>
+
+  <tr>
+<% @player.statistics.each do |stat| %>
+    <% s = Statistic.find(stat.id) %>
+    <td></td>
+    <td><%= s.games %></td>
+    <td><%= s.batting_average %></td>
+    <td><%= s.home_runs %></td>
+  </tr>
+  <% end %>
 </table>
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206050053) do
+ActiveRecord::Schema.define(:version => 20130206041839) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -39,20 +39,6 @@ ActiveRecord::Schema.define(:version => 20130206050053) do
     t.string   "url"
     t.datetime "published_at"
     t.integer  "player_id"
-  end
-
-  create_table "player_feeds_players", :force => true do |t|
-    t.integer  "player_id"
-    t.integer  "player_feed_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  create_table "playerfeedsplayers", :force => true do |t|
-    t.integer  "player_id"
-    t.integer  "player_feed_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
   end
 
   create_table "players", :force => true do |t|
