@@ -17,8 +17,7 @@ gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'feedzirra'
 gem 'newrelic_rpm'
-#gem 'pg', '0.14.0'
-gem 'sqlite3'
+
 
 group :development, :test do
   gem 'rspec-rails', '2.12.0'
@@ -37,7 +36,6 @@ end
 group :test do
   gem 'cucumber-rails' 
   gem 'database_cleaner' # database_cleaner is not required, but highly recommended
-  gem 'sqlite3'
   gem 'capybara', '1.1.2'
   gem 'rb-fsevent', '0.9.1', :require => false
   gem 'growl', '1.0.3'
