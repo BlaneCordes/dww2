@@ -2,7 +2,8 @@
 
 <h1> <%= @player.name %> </h1>
 <h2> <%= @player.team %> </h2>
-<h3> <%= @player.age %> </h3>
+<h2> <%= @player.position(@player.lineup_position) %> </h2>
+<h3> <%= "#{@player.age} Years Old" %> </h3>
 
 <table>
 	<tr>

@@ -9,7 +9,7 @@ class Player < ActiveRecord::Base
 
   def position(string)
     positions = {"1" => "Pitcher", "2" => "Catcher", "3" => "1B", "4" => "2B", "5" => "3B", "6" => "SS", "7" => "LF", "8" => "CF", "9" => "RF"}
-    positions[integer]
+    positions[string]
   end
 
   def self.to_csv
