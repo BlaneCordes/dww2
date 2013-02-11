@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1> <%= @player.name %> </h1>
+<h2> <%= @player.team %> </h2>
+<h3> <%= @player.age %> </h3>
 
 <table>
 	<tr>
@@ -15,24 +17,12 @@
 	<% end %>
 </table>
 
-<table>
-  <tr>
-    <th>Stats</th>
-    <th>Games</th>
-    <th>Batting Average</th>
-    <th>Home Runs</th>
-  </tr>
+ <% if @player.lineup_position != "1" %>
+    <%= render 'batter_stats' %>
+ <% else %>
+    <%= render 'pitcher_stats' %>
+ <% end %>
 
-  <tr>
-<% @player.statistics.each do |stat| %>
-    <% s = Statistic.find(stat.id) %>
-    <td></td>
-    <td><%= s.games %></td>
-    <td><%= s.batting_average %></td>
-    <td><%= s.home_runs %></td>
-  </tr>
-  <% end %>
-</table>
 
 
 <%= link_to 'Edit', edit_player_path(@player) %> |

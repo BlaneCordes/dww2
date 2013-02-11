@@ -1,0 +1,42 @@
+  <table>
+    <tr>
+      <th>G</th>
+      <th>AB</th>
+      <th>R</th>
+      <th>H</th>
+      <th>2B</th>
+      <th>3B</th>
+      <th>HR</th>
+      <th>RBI</th>
+      <th>BB</th>
+      <th>SO</th>
+      <th>SB</th>
+      <th>CS</th>
+      <th>AVG</th>
+      <th>OBP</th>
+      <th>SLG</th>
+      <th>OPS</th>
+    </tr>
+
+    <tr>
+  <% @player.statistics.each do |stat| %>
+      <% s = Statistic.find(stat.id) %>
+      <td><%= s.games %></td>
+      <td><%= s.at_bats %></td>
+      <td><%= s.runs %></td>
+      <td><%= s.hits %></td>
+      <td><%= s.doubles %></td>
+      <td><%= s.triples %></td>
+      <td><%= s.home_runs %></td>
+      <td><%= s.runs_batted_in %></td>
+      <td><%= s.walks %></td>
+      <td><%= s.strikeouts %></td>
+      <td><%= s.stolen_bases %></td>
+      <td><%= s.caught_stealing %></td>
+      <td><%= s.batting_average %></td>
+      <td><%= s.on_base_percentage %></td>
+      <td><%= s.slugging_percentage %></td>
+      <td><%= s.on_base_plus_slugging_percentage %></td>
+    </tr>
+    <% end %>
+  </table>

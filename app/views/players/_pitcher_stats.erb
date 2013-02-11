@@ -1,0 +1,40 @@
+  <table>
+    <tr>
+      <th>GP</th>
+      <th>GS</th>
+      <th>CG</th>
+      <th>SHO</th>
+      <th>IP</th>
+      <th>H</th>
+      <th>R</th>
+      <th>ER</th>
+      <th>HR</th>
+      <th>BB</th>
+      <th>SO</th>
+      <th>W</th>
+      <th>L</th>
+      <th>WHIP</th>
+      <th>ERA</th>
+    </tr>
+
+    <tr>
+  <% @player.statistics.each do |stat| %>
+      <% s = Statistic.find(stat.id) %>
+      <td><%= s.games %></td>
+      <td><%= s.games_started %></td>
+      <td><%= s.complete_games %></td>
+      <td><%= s.shutouts %></td>
+      <td><%= s.innings_pitched %></td>
+      <td><%= s.hits %></td>
+      <td><%= s.runs %></td>
+      <td><%= s.earned_runs %></td>
+      <td><%= s.home_runs %></td>
+      <td><%= s.walks %></td>
+      <td><%= s.strikeouts %></td>
+      <td><%= s.wins %></td>
+      <td><%= s.losses %></td>
+      <td><%= s.walks_hits_per_innings_pitched %></td>
+      <td><%= s.earned_run_average %></td>
+    </tr>
+    <% end %>
+  </table>
