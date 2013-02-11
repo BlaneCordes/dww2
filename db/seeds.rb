@@ -10,29 +10,31 @@ pitchers.each_line do |line|
 		player.name = array[1].chomp.delete("#")
 		player.age = array[2]
 		player.team = array[3]
+		player.lineup_position = "1"
+		player.eligible_position_one = "1"
 		stat.season = 2012
 		stat.wins = array[4]
 		stat.losses = array[5]
-		stat.earned_run_average = array[6]
-		stat.games = array[7]
-		stat.games_started = array[8]
-		stat.games_finished = array[9]
-		stat.complete_games = array[10]
-		stat.shutouts = array[11]
-		stat.saves = array[12]
-		stat.innings_pitched = array[13]
-		stat.hits = array[14]
-		stat.runs = array[15]
-		stat.earned_runs = array[16]
-		stat.home_runs = array[17]
-		stat.walks = array[18]
-		stat.intentional_walks = array[19]
-		stat.strikeouts = array[20]
-		stat.hit_by_pitch = array[21]
-		stat.balks = array[22]
-		stat.wild_pitches = array[23]
-		stat.batters_faced = array[24]
-		stat.walks_hits_per_innings_pitched = array[25]
+		stat.earned_run_average = array[7]
+		stat.games = array[8]
+		stat.games_started = array[9]
+		stat.games_finished = array[10]
+		stat.complete_games = array[11]
+		stat.shutouts = array[12]
+		stat.saves = array[13]
+		stat.innings_pitched = array[14]
+		stat.hits = array[15]
+		stat.runs = array[16]
+		stat.earned_runs = array[17]
+		stat.home_runs = array[18]
+		stat.walks = array[19]
+		stat.intentional_walks = array[20]
+		stat.strikeouts = array[21]
+		stat.hit_by_pitch = array[22]
+		stat.balks = array[23]
+		stat.wild_pitches = array[24]
+		stat.batters_faced = array[25]
+		stat.walks_hits_per_innings_pitched = array[26]
 
 		player.save
 		player.statistics << stat
@@ -70,6 +72,19 @@ batters.each_line do |line|
 		stat.hit_by_pitch = array[24]
 		stat.sacrifice_flies = array[26]
 		stat.intentional_walks = array[27]
+
+		if array[28].size <= 1
+			player.lineup_position = array[28]
+			player.eligible_position_one = array[28]
+		elsif array[28].match(/[*]\d/) != nil
+			player.lineup_position = array[28].match(/\d/).to_s
+			player.eligible_position_one = array[28].match(/\d/).to_s
+		else
+			player.lineup_position = array[28].match(/\d/).to_s
+			player.eligible_position_one = array[28].match(/\d/).to_s
+		end
+
+
 
 		player.save
 		player.statistics << stat

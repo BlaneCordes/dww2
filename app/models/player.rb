@@ -1,10 +1,11 @@
 require 'open-uri'
 class Player < ActiveRecord::Base
-  attr_accessible :name, :age, :eligible_positions, :player_key, :roster_position, :team
+  attr_accessible :name, :age, :lineup_position, :eligible_position_one, :eligible_position_two, :eligible_position_three, :player_key, :roster_position, :team
   # TODO: Players can be on more than one team, need to introduce leagues
   has_many :player_articles
   has_many :player_feeds, :through => :player_articles
   has_many :statistics
+  validates :name, :uniqueness => true
 
 
   def self.to_csv
