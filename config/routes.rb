@@ -14,9 +14,6 @@ Dww2::Application.routes.draw do
   match "/auth/:provider/callback" => "authentications#create"
   match "/signout" => "authentications#destroy", :as => :signout
   match "/teams" => "teams#get_teams"
-
-
-
   match "/nfl_teams" => "authentications#get_nfl_teams"
   match "/nfl_league_transactions" => "authentications#get_nfl_league_transactions"
   match "/mlb_leagues" => "authentications#get_mlb_leagues"

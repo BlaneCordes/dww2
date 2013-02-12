@@ -15,6 +15,7 @@ class PlayersController < ApplicationController
   # GET /players/1.json
   def show
     @player = Player.find(params[:id])
+    raise params.inspect
 
     respond_to do |format|
       format.html # show.html.erb
