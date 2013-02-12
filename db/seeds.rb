@@ -2,7 +2,6 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 pitchers = File.open("#{Rails.root}/db/pitch2012.txt", "r")
-
 pitchers.each_line do |line|
 	array = line.split(",")
 	player = Player.new
@@ -41,7 +40,6 @@ pitchers.each_line do |line|
 end
 
 batters = File.open("#{Rails.root}/db/batter2012.txt", "r")
-
 batters.each_line do |line|
 	array = line.split(",")
 	player = Player.new
@@ -83,8 +81,6 @@ batters.each_line do |line|
 			player.lineup_position = array[28].match(/\d/).to_s
 			player.eligible_position_one = array[28].match(/\d/).to_s
 		end
-
-
 
 		player.save
 		player.statistics << stat
