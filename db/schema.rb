@@ -41,6 +41,20 @@ ActiveRecord::Schema.define(:version => 20130211175011) do
     t.integer  "player_id"
   end
 
+  create_table "player_feeds_players", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "player_feed_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "playerfeedsplayers", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "player_feed_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "players", :force => true do |t|
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
