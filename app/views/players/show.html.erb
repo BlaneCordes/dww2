@@ -13,7 +13,7 @@
 	<tr>
 	  <% @player.player_articles.each do |article| %>
 	  	<% current_article = PlayerFeed.find(article.player_feed_id) %>
-	  	<td><%= current_article.description %></td>
+	  	<td><%= raw current_article.description %></td>
 	</tr>
 	<% end %>
 </table>

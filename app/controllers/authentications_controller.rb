@@ -21,12 +21,10 @@ require 'json'
         :uid => auth["uid"], :token => auth["credentials"]["token"],
         :secret => auth["credentials"]["secret"]
     )
-
+        debugger
       Team.get_team_details(session, current_user)
       Team.get_players(session, current_user)
 
-    #grab the users teams and rosters
-    #set up delayed job to do this so user is not slowed down on the authentication
     redirect_to user_path(current_user), :notice => "Connected with Yahoo!"
   end
 
@@ -35,26 +33,6 @@ require 'json'
     @authentication.destroy
     flash[:notice] = "Successfully destroyed authentication"
     redirect_to users_path(current_user)
-  end
-
-  def get_nfl_teams
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
-    set_access_token(request_url)
-  end
-
-  def get_nfl_players
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/nfl.l.263673.t.9/roster/players;format=json'
-    set_access_token(request_url)
-  end
-
-  def get_mlb_leagues
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;' + 'use_login=' + current_user.id.to_s + '/games;game_keys=mlb/teams;output=json'
-    set_access_token(request_url)
-  end
-
-  def get_my_mlb_players
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/team/mlb.l.182102.t.5/roster/players;output=json'
-    set_access_token(request_url)
   end
 
   def set_access_token(request_url)

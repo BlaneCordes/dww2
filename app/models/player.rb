@@ -12,6 +12,12 @@ class Player < ActiveRecord::Base
     positions[string]
   end
 
+  def reliever?
+    if self.statistics.last.saves > 0
+      true
+    end
+  end
+
   def self.to_csv
     CSV.generate do |csv|
       csv << column_names

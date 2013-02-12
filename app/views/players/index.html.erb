@@ -11,9 +11,9 @@
   <% player = Player.find(article.player_id) %>
   <% article = PlayerFeed.find(article.player_feed_id) %>
   <tr>
-    <td><%= link_to player.name, player %></td>   
+    <td><%= link_to player.name, player %></td>
     <td><%= article.created_at.strftime("%d %b") %></td>
-    <td><%= article.title %></td>
+    <td><%= raw article.title %></td>
   </tr>
 <% end %>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211175011) do
+ActiveRecord::Schema.define(:version => 20130212190205) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(:version => 20130211175011) do
   end
 
   create_table "player_feeds", :force => true do |t|
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "title"
-    t.string   "description"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.text     "title",        :limit => 255
+    t.text     "description",  :limit => 255
     t.string   "guid"
     t.string   "url"
     t.datetime "published_at"

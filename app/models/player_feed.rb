@@ -1,6 +1,6 @@
 class PlayerFeed < ActiveRecord::Base
 	attr_accessible :guid, :description, :title, :url, :published_at, :player_id
-	
+
 	has_many :player_articles
 	has_many :players, :through => :player_articles
 
@@ -10,13 +10,13 @@ class PlayerFeed < ActiveRecord::Base
 		feed.entries.each do |entry|
 		  unless exists? :guid => entry.id
 		    create!(
-		      :title        => entry.title,
-		      :description  => entry.summary,
+		      :title        => entry.title.html_safe,
+		      :description  => entry.summary.html_safe,
 		      :url          => entry.url,
 		      :published_at => entry.published,
 		      :guid         => entry.id,
 		    )
-		    
+
 		    find_player(entry)
 
 		  #PlayerFeed.player_triggers(entry)

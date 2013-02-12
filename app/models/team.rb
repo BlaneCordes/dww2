@@ -27,6 +27,17 @@ class Team < ActiveRecord::Base
       team.team_key = n["team_key"]
       team.save
     end
+    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=mlb/teams;output=json'
+    access_token = session[:access_token]
+    response = access_token.request(:get, request_url)
+    data = Hash.from_xml(response.body)
+    team_hash = data["fantasy_content"]["users"]["user"]["games"]["game"]["teams"]["team"]
+    team_hash.each do |n|
+      team = user.teams.new
+      team.name = n["name"]
+      team.team_key = n["team_key"]
+      team.save
+    end
   end
 
   def self.get_players(session, user)

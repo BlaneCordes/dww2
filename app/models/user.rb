@@ -11,9 +11,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :rememberable, :trackable
+         :rememberable, :trackable, :omniauthable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
 
@@ -28,11 +27,7 @@ class User < ActiveRecord::Base
                                     :http_method => :get})
 
     access_token = request_token.get_access_token
-    # raise access_token.inspect
-
     token_hash = { :oauth_token => oauth_token, :oauth_secret => oauth_token_secret}
-
-    # access_token = OAuth::AccessToken.from_hash(consumer, token_hash)  #TODO This only works with single user (i.e public twitter). I need to get a request token and
     return access_token
   end
 

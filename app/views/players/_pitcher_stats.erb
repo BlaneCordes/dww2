@@ -13,6 +13,9 @@
       <th>SO</th>
       <th>W</th>
       <th>L</th>
+    <% if @player.reliever? %>
+        <th>S</th>
+    <% end %>
       <th>WHIP</th>
       <th>ERA</th>
     </tr>
@@ -33,6 +36,9 @@
       <td><%= s.strikeouts %></td>
       <td><%= s.wins %></td>
       <td><%= s.losses %></td>
+      <% if @player.reliever? %>
+          <td><%= s.saves %></td>
+      <% end %>
       <td><%= s.walks_hits_per_innings_pitched %></td>
       <td><%= s.earned_run_average %></td>
     </tr>
