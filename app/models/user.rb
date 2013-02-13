@@ -11,25 +11,10 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :rememberable, :trackable, :omniauthable
+         :rememberable, :trackable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
-
-  def prepare_access_token(oauth_token, oauth_token_secret)
-    consumer = OAuth::Consumer.new(YAHOO_CONFIG['YAHOO_TOKEN'], YAHOO_CONFIG['YAHOO_SECRET'],
-                                   {:site => 'https://api.login.yahoo.com',
-                                    :request_token_path => '/oauth/v2/get_request_token',
-                                    :access_token_path => '/oauth/v2/get_token',
-                                    :authorize_path => '/oauth/v2/request_auth',
-                                    :signature_method => 'HMAC-SHA1',
-                                    :oauth_version => '1.0',
-                                    :http_method => :get})
-
-    access_token = request_token.get_access_token
-    token_hash = { :oauth_token => oauth_token, :oauth_secret => oauth_token_secret}
-    return access_token
-  end
 
   private
 

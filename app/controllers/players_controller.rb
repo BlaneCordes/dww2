@@ -15,7 +15,6 @@ class PlayersController < ApplicationController
   # GET /players/1.json
   def show
     @player = Player.find(params[:id])
-    raise params.inspect
 
     respond_to do |format|
       format.html # show.html.erb
@@ -55,21 +54,6 @@ class PlayersController < ApplicationController
     end
   end
 
-  def get_mlb_player(player_name=nil)
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=brach/ownership'
-    set_access_token(request_url)
-  end
-
-  def get_nfl_player(player_name=nil)
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/nfl.l.263673/players;search=hillis/ownership'
-    set_access_token(request_url)
-  end
-
-  def get_player_ownership(player_name)
-    request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/league/mlb.l.16633/players;search=________/percent_owned'
-    set_access_token(request_url)
-  end
-
   # PUT /players/1
   # PUT /players/1.json
   def update
@@ -96,12 +80,5 @@ class PlayersController < ApplicationController
       format.html { redirect_to players_url }
       format.json { head :no_content }
     end
-  end
-
-    def set_access_token(request_url)
-    access_token = session[:access_token]
-    response = access_token.request(:get, request_url)
-    data = Hash.from_xml(response.body)
-    render :json => data
   end
 end
