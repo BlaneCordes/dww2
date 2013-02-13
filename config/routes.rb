@@ -11,6 +11,7 @@ Dww2::Application.routes.draw do
   resources :pages
   resources :authentications
 
+
   match "/auth/:provider/callback" => "authentications#create"
   match "/signout" => "authentications#destroy", :as => :signout
   match "/teams" => "teams#get_teams"
