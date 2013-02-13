@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20130212190205) do
   create_table "player_feeds", :force => true do |t|
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
-    t.text     "title",        :limit => 255
-    t.text     "description",  :limit => 255
+    t.text     "title",        
+    t.text     "description",  
     t.string   "guid"
     t.string   "url"
     t.datetime "published_at"
