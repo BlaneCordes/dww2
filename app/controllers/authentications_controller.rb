@@ -21,7 +21,6 @@ require 'json'
         :uid => auth["uid"], :token => auth["credentials"]["token"],
         :secret => auth["credentials"]["secret"]
     )
-        debugger
       Team.get_team_details(session, current_user)
       Team.get_players(session, current_user)
 
