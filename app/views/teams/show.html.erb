@@ -23,9 +23,9 @@
 <% @team.players.each do |player| %>
   <tr>
     <td><%= link_to player.name, player_path(player) %></td> 
-    <td><%= player.nfl_team %></td>
-    <td><%= player.eligible_positions %></td>
-    <td><%= player.roster_position %></td>
+    <td><%= %></td>
+    <td><%= player.eligible_position_one %></td>
+    <td><%= player.lineup_position %></td>
   </tr>
 <% end %>
 </table>
