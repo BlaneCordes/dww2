@@ -20,6 +20,7 @@ class Team < ActiveRecord::Base
     access_token = session[:access_token]
     response = access_token.request(:get, request_url)
     data = Hash.from_xml(response.body)
+    raise data.inspect
     team_hash = data["fantasy_content"]["users"]["user"]["games"]["game"]["teams"]["team"]
     team_hash.each do |n|
       team = user.teams.new
