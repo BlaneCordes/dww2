@@ -1,5 +1,5 @@
 class ChangeTeamIdType < ActiveRecord::Migration
-  def change
+  def up
     change_column :players, :team_id, :integer
   end
 end
