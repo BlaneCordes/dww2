@@ -23,7 +23,7 @@
 <% @team.players.each do |player| %>
   <tr>
     <td><%= link_to player.name, player_path(player) %></td> 
-    <td><%= %></td>
+    <td><%= @team.name %></td>
     <td><%= player.eligible_position_one %></td>
     <td><%= player.lineup_position %></td>
   </tr>
