@@ -38,12 +38,12 @@ class Team < ActiveRecord::Base
       data = Hash.from_xml(response.body)
         players = data["fantasy_content"]["team"]["roster"]["players"]["player"].each do |player|
           name = player["name"]["full"]
-          raise name.inspect
           new_player = Player.find_or_create_by_name(name)
           new_player.eligible_position_one = player["eligible_positions"]["position"]
           new_player.lineup_position = player["selected_position"]["position"]
           new_player.player_key = player["editorial_player_key"]
           new_player.team_id = Team.find_by_team_key(team_key).id
+          raise new_player.inspect
           new_player.save
         end
     end
