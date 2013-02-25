@@ -6,15 +6,6 @@ class Team < ActiveRecord::Base
     belongs_to :user
     has_many :players
 
-  def to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |team|
-        csv << team.attributes.values_at(*column_names)
-      end
-    end
-  end
-
   def self.get_team_details(session, user)
     request_url = 'http://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/teams;output=json'
     access_token = session[:access_token]

@@ -7,7 +7,6 @@ class PlayersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @players }
-      format.csv { render text: @players.to_csv }
     end
   end
 
