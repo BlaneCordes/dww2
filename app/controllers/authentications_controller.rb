@@ -1,5 +1,6 @@
 class AuthenticationsController < ApplicationController
 require 'json'
+  
   def index
     @authentications = current_user.authentications
 
@@ -25,7 +26,6 @@ require 'json'
       Team.get_players(session, current_user)
       Team.get_mlb_team_details(session, current_user)
 
-
     redirect_to user_path(current_user), :notice => "Connected with Yahoo!"
   end
 
@@ -36,11 +36,5 @@ require 'json'
     redirect_to users_path(current_user)
   end
 
-  def set_access_token(request_url)
-    access_token = session[:access_token]
-    response = access_token.request(:get, request_url)
-    data = Hash.from_xml(response.body)
-    render :json => data
-  end
 end
 

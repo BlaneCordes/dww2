@@ -31,6 +31,7 @@ class Team < ActiveRecord::Base
       team.name = n["name"]
       team.team_key = n["team_key"]
       team.save
+    end
   end
 
   def self.get_players(session, user)
@@ -51,4 +52,5 @@ class Team < ActiveRecord::Base
        end
     end
   end
+
 end
