@@ -7,11 +7,14 @@ class User < ActiveRecord::Base
   has_many :teams, :dependent => :destroy
   has_many :players, :through => :teams
 
+#adding some more test garb
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable
+
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
@@ -21,6 +24,8 @@ class User < ActiveRecord::Base
   def send_welcome_message
     UserMailer.welcome_email(self).deliver
   end
+#adding some test code
+
 
   def self.to_csv
     CSV.generate do |csv|
