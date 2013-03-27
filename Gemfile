@@ -16,7 +16,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'feedzirra'
-gem 'newrelic_rpm'
 
 
 group :development, :test do
