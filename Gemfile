@@ -24,7 +24,6 @@ group :development, :test do
   gem 'guard-spork', '1.2.0'
   gem 'sqlite3'
   gem 'spork', '0.9.2'
-  gem 'webmock', '1.9.0'
    if RUBY_VERSION =~ /1.9/ 
    gem 'ruby-debug19' 
   else 

@@ -8,4 +8,8 @@ VERSION = "3"
   	HTTParty.get("#{URL}/mlb-#{ACCESS}#{VERSION}/schedule-3day?api_key=#{KEY}")
   end
 
+  def self.rosters
+  	HTTParty.get("#{URL}/mlb-#{ACCESS}#{VERSION}/rosters/2013.xml?api_key=#{KEY}")
+  end
+
 end

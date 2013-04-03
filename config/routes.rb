@@ -10,8 +10,10 @@ Dww2::Application.routes.draw do
   resources :emails
   resources :pages
   resources :authentications
+  resources :yahoo
 
-
+  match "bench_player" => "yahoo#bench_player"
+  match "yahoo_teams" => "yahoo#yahoo_mlb_teams"
   match "/auth/:provider/callback" => "authentications#create"
   match "/signout" => "authentications#destroy", :as => :signout
  
