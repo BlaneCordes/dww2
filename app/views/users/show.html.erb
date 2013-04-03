@@ -44,7 +44,7 @@ Team.get_mlb_team_details(session, current_user)
 Team.get_players(session, current_user) -->
 
 <%= link_to "Get my yahoo baseball teams", :controller => "yahoo", :action => "yahoo_mlb_teams", :id => @user %>  <br>
-<%= link_to "bench player", :controller => "yahoo", :action => "bench_player", :id => @user %>  <br><br>
+<%= link_to "bench player", :controller => "yahoo", :action => "move_player", :id => @user %>  <br><br>
 
 <table>
   <tr>

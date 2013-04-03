@@ -1,7 +1,7 @@
 require 'open-uri'
 class Team < ActiveRecord::Base
   include ApiModule
-    attr_accessible :name, :team_url, :team_key
+    attr_accessible :name, :team_url, :team_key, :sport
     validates_uniqueness_of :name
     belongs_to :user
     has_many :players
@@ -37,6 +37,7 @@ class Team < ActiveRecord::Base
     team = Team.new
     team.name = team_hash["name"]
     team.team_key = team_hash["team_key"]
+    team.sport = "mlb"
     team.save
     user.teams << team
   end
