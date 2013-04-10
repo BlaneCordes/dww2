@@ -1,4 +1,4 @@
-class YahooController < ApplicationController
+module YahooFantasyApi
 
 	def yahoo_mlb_teams
 		Team.get_mlb_team_details(session, current_user)
@@ -6,13 +6,7 @@ class YahooController < ApplicationController
 		redirect_to users_path(current_user)
 	end
 
-	def move_player
-		user = User.find(params["id"])
-		team = user.teams.where(:sport => "mlb").last
-		team_key = team.team_key
-		player_key = team.players.first.player_key
-		position = "BN"
-		date = Date.today
+	def move_player(team_key, player_key, position, date)
 		request_body = "<?xml version='1.0' encoding='UTF-8'?><fantasy_content><roster>
 		<coverage_type>date</coverage_type>
 		<date>#{date}</date><players><player><player_key>#{player_key}</player_key>
@@ -24,6 +18,10 @@ class YahooController < ApplicationController
     data = Hash.from_xml(response.body)
     redirect_to players_path, :notice => "Successfully added player to #{position} for #{date}"
 	end
+
+	def set_lineup(user_id, team_key)
+	end
+
 end
 
 =begin 

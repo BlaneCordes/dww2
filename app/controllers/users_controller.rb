@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authorize, :only => [:index, :destroy]
+  include YahooFantasyApi
 
   def index
     @users = User.all

@@ -49,6 +49,7 @@ class Team < ActiveRecord::Base
       access_token = session[:access_token]
       response = access_token.request(:get, request_url)
       data = Hash.from_xml(response.body)
+      raise data.inspect
         players = data["fantasy_content"]["team"]["roster"]["players"]["player"].each do |player|
           name = player["name"]["full"]
           new_player = Player.find_or_create_by_name(name)
