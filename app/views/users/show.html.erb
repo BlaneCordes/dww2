@@ -39,8 +39,8 @@
 <% end %>
 </table><br>
 
-<%= link_to "Get my yahoo baseball teams", :action => "YahooFantasyApi.yahoo_mlb_teams", :id => @user %>  <br>
 <%= link_to "bench player", :controller => "yahoo", :action => "move_player", :id => @user %>  <br><br>
+<%= link_to "get lineup", :controller => "users", :action => "get_lineup"%>  <br><br>
 
 <table>
   <tr>

@@ -19,7 +19,15 @@ module YahooFantasyApi
     redirect_to players_path, :notice => "Successfully added player to #{position} for #{date}"
 	end
 
-	def set_lineup(user_id, team_key)
+	def get_lineup
+    request_url = "http://fantasysports.yahooapis.com/fantasy/v2/team/308.l.19602.t.4/roster/players"
+    access_token = session[:access_token]
+    response = access_token.get(request_url)
+    data = Hash.from_xml(response.body)
+	end
+
+	def parse_lineup_response
+
 	end
 
 end

@@ -22,9 +22,6 @@ require 'json'
         :uid => auth["uid"], :token => auth["credentials"]["token"],
         :secret => auth["credentials"]["secret"]
     )
-      # Team.get_team_details(session, current_user)
-      # Team.get_mlb_team_details(session, current_user)
-      # Team.get_players(session, current_user)
 
     redirect_to user_path(current_user), :notice => "Connected with Yahoo!"
   end
