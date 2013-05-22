@@ -7,7 +7,9 @@
     <th>News</th>
   </tr>
 
-<% PlayerArticle.all.each do |article| %>
+  <%= will_paginate @player_articles %>
+
+<% @player_articles.each do |article| %>
   <% player = Player.find(article.player_id) %>
   <% article = PlayerFeed.find(article.player_feed_id) %>
   <tr>

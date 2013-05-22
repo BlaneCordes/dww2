@@ -16,6 +16,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-yahoo'
 gem 'feedzirra'
+gem 'will_paginate', '> 3.0'
 
 
 group :development, :test do

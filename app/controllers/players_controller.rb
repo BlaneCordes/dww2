@@ -1,8 +1,11 @@
 class PlayersController < ApplicationController
+  require 'will_paginate/array'
+  require 'will_paginate'
   # GET /players
   # GET /players.json
   def index
     @players = Player.all
+    @player_articles = PlayerArticle.order("id").page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb
