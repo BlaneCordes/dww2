@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.all
-    @player_articles = PlayerArticle.order("created_at").page(params[:page]).per_page(20)
+    @player_articles = PlayerArticle.order("created_at DESC").page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb
