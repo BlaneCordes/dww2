@@ -12,4 +12,8 @@ VERSION = "3"
   	HTTParty.get("#{URL}/mlb-#{ACCESS}#{VERSION}/rosters/2013.xml?api_key=#{KEY}")
   end
 
+  def self.player_seasonal
+  	HTTParty.get("#{URL}/mlb-#{ACCESS}#{VERSION}/seasontd/players/2013.xml?api_key=#{KEY}")
+  end
+
 end
