@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523022102) do
+ActiveRecord::Schema.define(:version => 20130618033339) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(:version => 20130523022102) do
     t.string   "eligible_position_six"
     t.integer  "team_id"
     t.string   "sports_data_guid"
+    t.integer  "height"
+    t.integer  "weight"
+    t.date     "birthdate"
+    t.string   "birthcity"
+    t.string   "birthstate"
+    t.string   "birthcountry"
+    t.string   "highschool"
+    t.string   "college"
+    t.date     "pro_debut"
+    t.string   "bat_hand"
+    t.string   "throw_hand"
   end
 
   create_table "sessions", :force => true do |t|

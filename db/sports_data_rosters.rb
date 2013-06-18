@@ -18,11 +18,24 @@ class SportsDataSeed
 	          if profile_value_array.size > 2
 	            profile_value_array.each do |player|
 	              player_match = SportsDataSeed.check_name(player)
-	                if player_match
-	                  puts player_match.name
-	                  player_match.sports_data_guid = player["id"]
-	                  player_match.save!
-	                end
+	              if player_match
+                  puts player_match.name
+                  player_match.sports_data_guid = player["id"]
+                  player_match.height = player["height"]
+                  player_match.weight = player["weight"]
+                  player_match.birthdate = player["birthdate"]
+                  player_match.birthcity = player["birthcity"]
+                  player_match.birthstate = player["birthstate"]
+                  player_match.birthcountry = player["birthcountry"]
+                  player_match.highschool = player["highschool"]
+                  player_match.college = player["college"]
+                  player_match.pro_debut = player["pro_debut"]	               
+                  player_match.bat_hand = player["bat_hand"]
+                  player_match.throw_hand = player["throw_hand"]
+                  player_match.eligible_position_one = player["position"]
+
+                  player_match.save!
+                end
 	            end
 	          end
 	        end
